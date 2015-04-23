@@ -1,4 +1,5 @@
-# P Diffy
+# P Diffy 
+![alt text](https://github.com/SeatwaveOpenSource/pdiffy/blob/master/pdiffy_logo.PNG "PDiffy")
 
 ##Running the web app
 1. Clone this repo
