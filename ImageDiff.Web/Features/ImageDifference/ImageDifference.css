@@ -1,0 +1,10 @@
+﻿.difference-image {
+	height: 10%;
+	width:32.5%;
+	border: solid black 1px;
+}
+
+.page-object {
+	background-color: white;
+	border: 1px dashed darkgray;
+}
