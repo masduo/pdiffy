@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using ImageDiff;
 using PDiffy.Web.Data;
 using PDiffy.Web.Features.Tools;
 using Quarks;

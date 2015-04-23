@@ -4,11 +4,10 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using PDiffy.Web;
 using PDiffy.Web.Infrastructure.Factories;
 using PDiffy.Web.Infrastructure.WebApiResolver;
 
-namespace ImageDiff.Web
+namespace PDiffy.Web
 {
     public class MvcApplication : HttpApplication
     {

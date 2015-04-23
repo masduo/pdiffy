@@ -1,7 +1,6 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using ImageDiff;
 using PDiffy.Web.Features.Tools;
 
 namespace PDiffy.Web.Infrastructure.Installers

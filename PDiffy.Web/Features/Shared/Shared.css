@@ -36,6 +36,7 @@ a {
 i {
 	font-style: normal;
 	background-color: #008b8b;
+	margin: 30px;
 	padding: 5px 10px;
 	display: inline-block;
 	-moz-border-radius: 100px;
