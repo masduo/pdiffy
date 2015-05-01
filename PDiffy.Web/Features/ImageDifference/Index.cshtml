@@ -12,32 +12,36 @@
 			<p>Build #: <b>@page.Build</b></p>
 
 			@if (page.HumanComparisonRequired)
-			{ <p style="background-color:#00ace6;">@page.LastComparisonDate</p> }
+			{ <p class="comparison">@page.LastComparisonDate</p> }
 			else if (page.ComparisonStillValid)
-			{ <p style="background-color: #21b82b;">@page.LastComparisonDate</p> }
+			{ <p class="comparison valid">@page.LastComparisonDate</p> }
 			else
-			{ <p style="background-color:  #FF4646;">@page.LastComparisonDate</p>}
+			{ <p class="comparison invalid">@page.LastComparisonDate</p>}
 
 			@if (page.HumanComparisonRequired)
 			{
-				<a href="@page.OriginalImageUrl" target="_blank">
-					<img class="difference-image" src="@page.OriginalImageUrl" alt="originalImage" />
-				</a>
-				<a href="@page.ComparisonImageUrl" target="_blank">
-					<img class="difference-image" src="@page.ComparisonImageUrl" alt="comparisonImage" />
-				</a>
-				<a href="@Url.Action("DifferenceImage", "ImageDifference", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-					<img class="difference-image" src="@Url.Action("DifferenceImage", "ImageDifference", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceImage" />
-				</a>
-				<br />
-				<br />
-				@Html.ActionLink("Approve Difference", "Approve", new { name = page.Name }, new { @class = "btn" })
-				<br />
-				<br />
+				<div class="images">
+					<a href="@page.OriginalImageUrl" target="_blank">
+						<img class="difference-image" src="@page.OriginalImageUrl" alt="originalImage" />
+					</a>
+					<a href="@page.ComparisonImageUrl" target="_blank">
+						<img class="difference-image" src="@page.ComparisonImageUrl" alt="comparisonImage" />
+					</a>
+					<a href="@Url.Action("DifferenceImage", "ImageDifference", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
+						<img class="difference-image" src="@Url.Action("DifferenceImage", "ImageDifference", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceImage" />
+					</a>
+				</div>
 			}
-			<a class="btn align-center" href="#@page.Name">Delete</a>
-			<br />
-			<br />
+			<div class="controls">
+				@if (page.HumanComparisonRequired)
+				{
+					@Html.ActionLink("Approve Difference", "Approve", new { name = page.Name }, new { @class = "btn" })
+				}
+
+				<a class="btn align-center" href="@Url.Action("Index", "History", new { name = page.Name })">History</a>
+
+				<a class="btn align-center" href="#@page.Name">Delete</a>
+			</div>
 			<div id="@page.Name" class="modalDialog">
 				<div class="align-center text-align-center">
 					<a href="#closedModal" title="Close" class="close">X</a>
@@ -50,9 +54,9 @@
 		</div>
 	}
 	<br />
-	<br/>
+	<br />
 	<a class="btn danger align-center" href="#deleteAll">Delete All</a>
-	<div id="#deleteAll" class="modalDialog">
+	<div id="deleteAll" class="modalDialog">
 		<div class="align-center text-align-center">
 			<a href="#closedModal" title="Close" class="close">X</a>
 

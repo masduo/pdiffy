@@ -41,7 +41,12 @@ namespace PDiffy.Web.Features.ImageDifference
 		public FileContentResult DifferenceImage(string name, DateTime lastComparisonDate)
 		{
 			var page = _pages.Single(x => x.Name == name);
+			var differenceImageNotStoredBeforeGeneration = string.IsNullOrWhiteSpace(page.DifferenceImagePath);
+
 			var data = _imageGenerator.GenerateDifference(page);
+
+			if (differenceImageNotStoredBeforeGeneration)
+				_pages.Update(page);
 
 			return File(data, "image/png");
 		}
@@ -52,6 +57,7 @@ namespace PDiffy.Web.Features.ImageDifference
 
 			page.OriginalImageUrl = page.ComparisonImageUrl;
 			page.ComparisonImageUrl = null;
+			page.DifferenceImagePath = null;
 			page.HumanComparisonRequired = false;
 			page.LastComparisonDate = SystemTime.Now;
 

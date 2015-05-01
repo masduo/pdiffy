@@ -2,23 +2,45 @@
 using System.Web.Mvc;
 using Biggy.Core;
 using PDiffy.Web.Data;
+using PDiffy.Web.Features.Page;
+using PDiffy.Web.Features.Shared;
 
 namespace PDiffy.Web.Features.History
 {
-    public class HistoryController : Controller
-    {
-	    readonly BiggyList<PageModel> _pages;
+	public class HistoryController : Controller
+	{
+		readonly BiggyList<PageModel> _pages;
+		private readonly IImageGenerator _imageGenerator;
 
-	    public HistoryController(BiggyList<PageModel> pages)
-	    {
-		    _pages = pages;
-	    }
+		public HistoryController(BiggyList<PageModel> pages, IImageGenerator imageGenerator)
+		{
+			_pages = pages;
+			_imageGenerator = imageGenerator;
+		}
 
-	    public ActionResult Index(string name)
-	    {
-		    var page = _pages.Single(x => x.Name == name);
+		public ActionResult Index(string name)
+		{
+			var page = _pages.Single(x => x.Name == name);
 
-            return View();
-        }
-    }
+			var differenceImages = _imageGenerator.GenerateDifferences(page.Name);
+
+			var historyViewModel = new HistoryViewModel
+			{
+				Page = new PageViewModel
+					{
+						Name = page.Name,
+						Url = page.Url,
+						LastComparisonDate = page.LastComparisonDate,
+						ComparisonStillValid = page.ComparisonStillValid,
+						HumanComparisonRequired = page.HumanComparisonRequired,
+						OriginalImageUrl = page.OriginalImageUrl,
+						ComparisonImageUrl = page.ComparisonImageUrl,
+						Build = page.Build
+					},
+				DifferenceImages = differenceImages
+			};
+
+			return View(historyViewModel);
+		}
+	}
 }
