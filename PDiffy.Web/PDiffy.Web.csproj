@@ -120,6 +120,7 @@
     <None Include="..\packages\PowerTasks.Plugins.Test.1.0.0\scripts\specflow_report_template.html">
       <Link>.Tasks\specflow_report_template.html</Link>
     </None>
+    <Content Include="Content\dance.gif" />
     <Content Include="Features\ImageDifference\ImageDifference.css" />
     <Content Include="Features\Shared\Buttons.css" />
     <Content Include="Features\Shared\Modals.css" />
@@ -136,9 +137,12 @@
     <Compile Include="Data\PageModel.cs" />
     <Compile Include="Features\Error\ErrorController.cs" />
     <Compile Include="Features\History\HistoryController.cs" />
+    <Compile Include="Features\History\HistoryViewModel.cs" />
     <Compile Include="Features\ImageDifference\ImageDifferenceViewModel.cs" />
     <Compile Include="Features\Page\PageViewModel.cs" />
     <Compile Include="Features\Page\PageController.cs" />
+    <Compile Include="Features\Shared\Image.cs" />
+    <Compile Include="Features\Shared\ImageStore.cs" />
     <Compile Include="Features\Shared\ImageGenerator.cs" />
     <Compile Include="Features\ImageDifference\ImageDifferenceController.cs" />
     <Compile Include="Features\Shared\Status.cs" />

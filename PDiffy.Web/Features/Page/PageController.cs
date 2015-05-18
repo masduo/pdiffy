@@ -21,7 +21,7 @@ namespace PDiffy.Web.Features.Page
 		}
 
 		[HttpGet]
-		public JsonResult<Status> Update(string name, string imageUrl, int build = 0)
+		public JsonResult<Status> Update(string name, string imageUrl, int build = 0) //TODO add error codes
 		{
 			var success = true;
 			string message = null;
@@ -31,12 +31,17 @@ namespace PDiffy.Web.Features.Page
 
 				if (page == null)
 					_pages.Add(new PageModel { Name = name, OriginalImageUrl = imageUrl, Build = build });
-				else
+				else if (!page.HumanComparisonRequired)
 				{
 					page.ComparisonImageUrl = imageUrl;
 					page.Build = build;
 					_imageGenerator.GenerateComparison(page);
 					_pages.Update(page);
+				}
+				else
+				{
+					success = false;
+					message = "Human comparison is required before any more difference images can be generated";
 				}
 			}
 			catch (Exception exception)
