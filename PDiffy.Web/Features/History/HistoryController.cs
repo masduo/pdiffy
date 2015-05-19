@@ -12,9 +12,9 @@ namespace PDiffy.Web.Features.History
 		readonly BiggyList<PageModel> _pages;
 		private readonly IImageGenerator _imageGenerator;
 
-		public HistoryController(BiggyList<PageModel> pages, IImageGenerator imageGenerator)
+		public HistoryController(IImageGenerator imageGenerator)
 		{
-			_pages = pages;
+			_pages = Data.Biggy.PageList;
 			_imageGenerator = imageGenerator;
 		}
 
@@ -29,7 +29,6 @@ namespace PDiffy.Web.Features.History
 				Page = new PageViewModel
 					{
 						Name = page.Name,
-						Url = page.Url,
 						LastComparisonDate = page.LastComparisonDate,
 						ComparisonStillValid = page.ComparisonStillValid,
 						HumanComparisonRequired = page.HumanComparisonRequired,

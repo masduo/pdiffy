@@ -8,7 +8,6 @@ namespace PDiffy.Web.Data
 	{
 		[Key]
 		public string Name { get; set; }
-		public string Url { get; set; }
 
 		public bool ComparisonStillValid { get { return LastComparisonDate != null && LastComparisonDate > SystemTime.Now.AddHours(-72); } }
 		public DateTime? LastComparisonDate { get; set; }

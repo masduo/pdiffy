@@ -14,10 +14,10 @@ namespace PDiffy.Web.Features.ImageDifference
 		readonly IImageGenerator _imageGenerator;
 		readonly BiggyList<PageModel> _pages;
 
-		public ImageDifferenceController(IImageGenerator imageGenerator, BiggyList<PageModel> pages)
+		public ImageDifferenceController(IImageGenerator imageGenerator)
 		{
 			_imageGenerator = imageGenerator;
-			_pages = pages;
+			_pages = Data.Biggy.PageList;
 		}
 
 		public ActionResult Index()
@@ -25,7 +25,6 @@ namespace PDiffy.Web.Features.ImageDifference
 			var pages = _pages.Select(page => new PageViewModel
 			{
 				Name = page.Name,
-				Url = page.Url,
 				LastComparisonDate = page.LastComparisonDate,
 				ComparisonStillValid = page.ComparisonStillValid,
 				HumanComparisonRequired = page.HumanComparisonRequired,

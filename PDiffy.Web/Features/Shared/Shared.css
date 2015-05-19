@@ -10,9 +10,11 @@ body {
 
 h1 {
 	margin-bottom: 5px !important;
+	margin-top: 5px !important;
 	-moz-word-break: break-all;
 	-o-word-break: break-all;
 	word-break: break-all;
+	font-size: 50px;
 }
 
 h2 {
@@ -64,6 +66,29 @@ button {
 	text-align: center;
 }
 
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-right {
+	text-align: right;
+}
+
 .align-center {
 	margin: auto;
 }
+
+.error-red {
+	color: #ff4848;
+}
+
+.header {
+	margin-bottom: 30px;
+}
+
+.logo {
+	height: 250px;
+	margin-top: 10px;
+}
+
+

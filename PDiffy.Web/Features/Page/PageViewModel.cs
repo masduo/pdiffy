@@ -5,7 +5,6 @@ namespace PDiffy.Web.Features.Page
 	public class PageViewModel
 	{
 		public string Name { get; set; }
-		public string Url { get; set; }
 
 		public DateTime? LastComparisonDate { get; set; }
 		public bool HumanComparisonRequired { get; set; }

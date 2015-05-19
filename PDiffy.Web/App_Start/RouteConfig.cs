@@ -12,7 +12,7 @@ namespace PDiffy.Web
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",
-				defaults: new { controller = "ImageDifference", action = "Index", id = UrlParameter.Optional }
+				defaults: new { controller = "Setup", action = "Index", id = UrlParameter.Optional }
 			);
 		}
 	}

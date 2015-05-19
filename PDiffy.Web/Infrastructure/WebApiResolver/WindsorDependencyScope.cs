@@ -32,6 +32,5 @@ namespace PDiffy.Web.Infrastructure.WebApiResolver
 		{
 			_disposable.Dispose();
 		}
-
 	}
 }

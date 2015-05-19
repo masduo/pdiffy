@@ -14,9 +14,9 @@ namespace PDiffy.Web.Features.Page
 		readonly BiggyList<PageModel> _pages;
 		readonly IImageGenerator _imageGenerator;
 
-		public PageController(BiggyList<PageModel> pages, IImageGenerator imageGenerator)
+		public PageController(IImageGenerator imageGenerator)
 		{
-			_pages = pages;
+			_pages = Data.Biggy.PageList;
 			_imageGenerator = imageGenerator;
 		}
 
