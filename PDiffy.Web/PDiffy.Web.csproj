@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -121,7 +122,7 @@
       <Link>.Tasks\specflow_report_template.html</Link>
     </None>
     <Content Include="Content\logo.png" />
-    <Content Include="Features\ImageDifference\ImageDifference.css" />
+    <Content Include="Features\Difference\Difference.css" />
     <Content Include="Features\Setup\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -142,7 +143,8 @@
     <Compile Include="Features\Error\ErrorController.cs" />
     <Compile Include="Features\History\HistoryController.cs" />
     <Compile Include="Features\History\HistoryViewModel.cs" />
-    <Compile Include="Features\ImageDifference\ImageDifferenceViewModel.cs" />
+    <Compile Include="Features\Difference\DifferenceViewModel.cs" />
+    <Compile Include="Features\Image\ImageController.cs" />
     <Compile Include="Features\Page\PageViewModel.cs" />
     <Compile Include="Features\Page\PageController.cs" />
     <Compile Include="Features\Setup\SetupController.cs" />
@@ -151,10 +153,8 @@
     </Compile>
     <Compile Include="Features\Shared\Image.cs" />
     <Compile Include="Features\Shared\ImageStore.cs" />
-    <Compile Include="Features\Shared\ImageGenerator.cs" />
-    <Compile Include="Features\ImageDifference\ImageDifferenceController.cs" />
-    <Compile Include="Features\Shared\Status.cs" />
-    <Compile Include="Features\Tools\ImageCapture.cs" />
+    <Compile Include="Features\Difference\DifferenceController.cs" />
+    <Compile Include="Features\Page\Status.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,7 +185,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Features\ImageDifference\Index.cshtml" />
+    <Content Include="Features\Difference\Index.cshtml" />
     <Content Include="Features\Shared\_Layout.cshtml" />
     <Content Include="Features\Shared\_AsciiBanner.cshtml" />
     <Content Include="Features\Error\404.cshtml" />
@@ -202,7 +202,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Image\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PDiffy\PDiffy.csproj">
       <Project>{D71D935B-BAFB-4EBE-A4B9-CB5D99DFA148}</Project>

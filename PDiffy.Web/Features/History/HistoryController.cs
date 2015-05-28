@@ -1,4 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Drawing;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Web.Mvc;
 using Biggy.Core;
 using PDiffy.Web.Data;
@@ -9,20 +13,25 @@ namespace PDiffy.Web.Features.History
 {
 	public class HistoryController : Controller
 	{
-		readonly BiggyList<PageModel> _pages;
-		private readonly IImageGenerator _imageGenerator;
+	    private readonly IImageStore _imageStore;
+	    readonly BiggyList<PageModel> _pages;
 
-		public HistoryController(IImageGenerator imageGenerator)
+		public HistoryController(IImageStore imageStore)
 		{
-			_pages = Data.Biggy.PageList;
-			_imageGenerator = imageGenerator;
+		    _imageStore = imageStore;
+		    _pages = Data.Biggy.PageList;
 		}
 
-		public ActionResult Index(string name)
+	    public ActionResult Index(string name)
 		{
 			var page = _pages.Single(x => x.Name == name);
 
-			var differenceImages = _imageGenerator.GenerateDifferences(page.Name);
+			var differenceImages = _imageStore.GetImages(name, "diff").Select(x => new Shared.Image
+			{
+				CreatedDate =
+					DateTime.ParseExact(Path.GetFileName(x).Split('.')[2], "yyyyMMdd-HHmmss", CultureInfo.InvariantCulture),
+				ImageString = "data:image/png;base64," + Convert.ToBase64String((byte[])new ImageConverter().ConvertTo(new Bitmap(x), typeof(byte[])))
+			});
 
 			var historyViewModel = new HistoryViewModel
 			{
@@ -31,10 +40,7 @@ namespace PDiffy.Web.Features.History
 						Name = page.Name,
 						LastComparisonDate = page.LastComparisonDate,
 						ComparisonStillValid = page.ComparisonStillValid,
-						HumanComparisonRequired = page.HumanComparisonRequired,
-						OriginalImageUrl = page.OriginalImageUrl,
-						ComparisonImageUrl = page.ComparisonImageUrl,
-						Build = page.Build
+						HumanComparisonRequired = page.HumanComparisonRequired
 					},
 				DifferenceImages = differenceImages
 			};

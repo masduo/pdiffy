@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using Biggy.Core;
@@ -9,48 +11,82 @@ using PDiffy.Web.Features.Shared;
 
 namespace PDiffy.Web.Features.Page
 {
-	public class PageController : ApiController
-	{
-		readonly BiggyList<PageModel> _pages;
-		readonly IImageGenerator _imageGenerator;
+    public class PageController : ApiController
+    {
+        readonly BiggyList<PageModel> _pages;
+        private readonly IImageStore _imageStore;
 
-		public PageController(IImageGenerator imageGenerator)
-		{
-			_pages = Data.Biggy.PageList;
-			_imageGenerator = imageGenerator;
-		}
+        public PageController( IImageStore imageStore)
+        {
+            _pages = Data.Biggy.PageList;
+            _imageStore = imageStore;
+        }
 
-		[HttpGet]
-		public JsonResult<Status> Update(string name, string imageUrl, int build = 0) //TODO add error codes
-		{
-			var success = true;
-			string message = null;
-			try
-			{
-				var page = _pages.SingleOrDefault(x => x.Name == name);
+        [HttpPost]
+        public async Task<JsonResult<Status>> Update(string name)
+        {
+            var status = Status.Ok;
+            try
+            {
+                Bitmap image;
+                using (var requestStream = await Request.Content.ReadAsStreamAsync())
+                    image =new Bitmap(requestStream);
 
-				if (page == null)
-					_pages.Add(new PageModel { Name = name, OriginalImageUrl = imageUrl, Build = build });
-				else if (!page.HumanComparisonRequired)
-				{
-					page.ComparisonImageUrl = imageUrl;
-					page.Build = build;
-					_imageGenerator.GenerateComparison(page);
-					_pages.Update(page);
-				}
-				else
-				{
-					success = false;
-					message = "Human comparison is required before any more difference images can be generated";
-				}
-			}
-			catch (Exception exception)
-			{
-				success = false;
-				message = !exception.Message.IsNullOrEmpty() ? exception.Message : exception.InnerException.Message;
-			}
+                var page = _pages.SingleOrDefault(x => x.Name == name);
 
-			return Json(new Status { Success = success, Message = message });
-		}
-	}
+                if (page == null)
+                    _pages.Add(new PageModel { Name = name, OriginalImagePath = _imageStore.SaveImage(image, name + ".orig") });
+                else if (!page.HumanComparisonRequired)
+                {
+                    page.ComparisonImagePath = _imageStore.SaveImage(image, name + ".comp");
+                    page.GenerateComparison();
+                    _pages.Update(page);
+                }
+                else
+                {
+                    status = Status.HumanComparisonRequired;
+                }
+            }
+            catch (Exception exception)
+            {
+                status = new Status
+                {
+                    Message = !exception.Message.IsNullOrEmpty() ? exception.Message : exception.InnerException.Message
+                };
+            }
+
+            return Json(status);
+
+        }
+
+        [HttpGet]
+        public JsonResult<Status> Update(string name, string imageUrl)
+        {
+            var status = Status.Ok;
+            try
+            {
+                var page = _pages.SingleOrDefault(x => x.Name == name);
+
+                if (page == null)
+                    _pages.Add(new PageModel { Name = name, OriginalImageUrl = imageUrl });
+                else if (!page.HumanComparisonRequired)
+                {
+                    page.ComparisonImageUrl = imageUrl;
+                    page.GenerateComparison();
+                    _pages.Update(page);
+                }
+                else
+                    status = Status.HumanComparisonRequired;
+            }
+            catch (Exception exception)
+            {
+                status = new Status
+                {
+                    Message = !exception.Message.IsNullOrEmpty() ? exception.Message : exception.InnerException.Message
+                };
+            }
+
+            return Json(status);
+        }
+    }
 }

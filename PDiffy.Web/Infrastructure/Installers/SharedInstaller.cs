@@ -10,7 +10,6 @@ namespace PDiffy.Web.Infrastructure.Installers
 		public void Install(IWindsorContainer container, IConfigurationStore store)
 		{
 			container.Register(
-				Component.For<IImageGenerator>().ImplementedBy<ImageGenerator>().LifestyleTransient(),
 				Component.For<IImageStore>().ImplementedBy<ImageStore>().LifestyleTransient());
 		}
 	}

@@ -12,7 +12,6 @@ namespace PDiffy.Web.Features.Page
 		public string OriginalImageUrl { get; set; }
 		public string ComparisonImageUrl { get; set; }
 
-		public int Build { get; set; }
 		public bool ComparisonStillValid { get; set; }
 	}
 }

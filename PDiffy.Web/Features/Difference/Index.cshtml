@@ -1,15 +1,14 @@
-﻿@model PDiffy.Web.Features.ImageDifference.ImageDifferenceViewModel
+﻿@model PDiffy.Web.Features.Difference.DifferenceViewModel
 
 @{
 	Layout = "~/Features/Shared/_Layout.cshtml";
 }
 <div class="page-container align-center text-align-center">
-	<h2 class="page-title align-center">Pages</h2>
+	<h2 class="page-title align-center">Differences</h2>
 	@foreach (var page in Model.Pages.Reverse())
 	{
 		<div class="page-object align-center text-align-center">
 			<h3>@page.Name</h3>
-			<p>Build #: <b>@page.Build</b></p>
 
 			@if (page.HumanComparisonRequired)
 			{ <p class="comparison">@page.LastComparisonDate</p> }
@@ -21,14 +20,14 @@
 			@if (page.HumanComparisonRequired)
 			{
 				<div class="images">
-					<a href="@page.OriginalImageUrl" target="_blank">
-						<img class="difference-image" src="@page.OriginalImageUrl" alt="originalImage" />
-					</a>
-					<a href="@page.ComparisonImageUrl" target="_blank">
-						<img class="difference-image" src="@page.ComparisonImageUrl" alt="comparisonImage" />
-					</a>
-					<a href="@Url.Action("DifferenceImage", "ImageDifference", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-						<img class="difference-image" src="@Url.Action("DifferenceImage", "ImageDifference", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceImage" />
+				    <a href="@Url.Action("OriginalImage", "Image", new {name = page.Name, lastComparisonDate = page.LastComparisonDate})" target="_blank">
+				        <img class="difference-image" src="@Url.Action("OriginalImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceImage"/>
+				    </a>
+                    <a href="@Url.Action("ComparisonImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
+                        <img class="difference-image" src="@Url.Action("ComparisonImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceImage" />
+                    </a>
+					<a href="@Url.Action("DifferenceImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
+						<img class="difference-image" src="@Url.Action("DifferenceImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceImage" />
 					</a>
 				</div>
 			}
