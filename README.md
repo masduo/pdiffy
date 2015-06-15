@@ -21,7 +21,18 @@ Endpoint: **/api/page/update?name=nameofcomparison&imageUrl=yourimageurl**
 --
 Endppoint: **/api/page/update?name=nameofcomparison**
 
-This endpoint requires the image that will be compared to be streamed to it.
+This endpoint requires the image that will be compared to be streamed to it. (see example below)
+
+```csharp
+var request = HttpWebRequest.Create("//yourhosting.something/api/page/upload?name=nameofcomparison");
+request.Method = "POST";
+var stream = request.GetRequestStream();
+var docFile = File.OpenRead(@"C:\Images\unicorn.png");
+docFile.CopyTo(stream);
+docFile.Close();
+stream.Close();
+var response = request.GetResponse();
+```
 
 * The first time you hit this endpoint with a streamed image P Diffy will store the image and create the base for future comparisons.
 * The second time you hit this endpoint with streamed image P Diffy will save the newly streamed image and compare it to the orignal image, creating a difference image if necessary.
