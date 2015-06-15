@@ -6,7 +6,7 @@ using System.Net;
 using Newtonsoft.Json;
 using Quarks;
 
-namespace PDiffy.Web.Data
+namespace PDiffy.Web.Features.Page
 {
     public class PageModel
     {
@@ -22,8 +22,8 @@ namespace PDiffy.Web.Data
         {
             get
             {
-                return string.IsNullOrEmpty(OriginalImageUrl) 
-                    ? new Bitmap(OriginalImagePath) 
+                return string.IsNullOrEmpty(OriginalImageUrl)
+                    ? new Bitmap(OriginalImagePath)
                     : Capture(OriginalImageUrl);
             }
         }
@@ -36,8 +36,8 @@ namespace PDiffy.Web.Data
         {
             get
             {
-                return string.IsNullOrEmpty(ComparisonImageUrl) 
-                    ? new Bitmap(ComparisonImagePath) 
+                return string.IsNullOrEmpty(ComparisonImageUrl)
+                    ? new Bitmap(ComparisonImagePath)
                     : Capture(ComparisonImageUrl);
             }
         }
@@ -52,8 +52,8 @@ namespace PDiffy.Web.Data
         {
             get
             {
-                return string.IsNullOrWhiteSpace(DifferenceImagePath) 
-                    ? new ImageDiffTool().CreateDifferenceImage(OriginalImage, ComparisonImage) 
+                return string.IsNullOrWhiteSpace(DifferenceImagePath)
+                    ? new ImageDiffTool().CreateDifferenceImage(OriginalImage, ComparisonImage)
                     : new Bitmap(DifferenceImagePath);
             }
         }
@@ -71,6 +71,11 @@ namespace PDiffy.Web.Data
 
             if (!equal)
                 HumanComparisonRequired = true;
+            else
+            {
+                ComparisonImageUrl = null;
+                ComparisonImagePath = null;
+            }
 
             LastComparisonDate = SystemTime.Now;
         }

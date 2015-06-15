@@ -2,43 +2,48 @@
 
 namespace PDiffy.Web.Infrastructure
 {
-	public static class Environment
-	{
-		public static string ImageStorePath
-		{
-			get
-			{
-				var imageStorePath = Get("pdiffyImageStorePath");
-				return imageStorePath == null ? string.Empty : imageStorePath.ToString();
-			}
-			set { Set("pdiffyImageStorePath", value); }
-		}
+    public static class Environment
+    {
+        public const string OriginalId = "orig";
+        public const string ComparisonId = "comp";
+        public const string DifferenceId = "diff";
+        public const string LearnId = "learn";
 
-		public static string DataStorePath
-		{
-			get
-			{
-				var dataStorePath = Get("pdiffyDataStorePath");
-				return dataStorePath == null ? string.Empty : dataStorePath.ToString();
-			}
-			set { Set("pdiffyDataStorePath", value); }
-		}
+        public static string ImageStorePath
+        {
+            get
+            {
+                var imageStorePath = Get("pdiffyImageStorePath");
+                return imageStorePath == null ? string.Empty : imageStorePath.ToString();
+            }
+            set { Set("pdiffyImageStorePath", value); }
+        }
 
-		const string SubKeyPath = @"SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
+        public static string DataStorePath
+        {
+            get
+            {
+                var dataStorePath = Get("pdiffyDataStorePath");
+                return dataStorePath == null ? string.Empty : dataStorePath.ToString();
+            }
+            set { Set("pdiffyDataStorePath", value); }
+        }
 
-		static object Get(string name)
-		{
-			object value = null;
-			using (RegistryKey envKey = Registry.LocalMachine.OpenSubKey(SubKeyPath))
-				if (envKey != null) value = envKey.GetValue(name);
+        const string SubKeyPath = @"SYSTEM\CurrentControlSet\Control\Session Manager\Environment";
 
-			return value;
-		}
+        static object Get(string name)
+        {
+            object value = null;
+            using (RegistryKey envKey = Registry.LocalMachine.OpenSubKey(SubKeyPath))
+                if (envKey != null) value = envKey.GetValue(name);
 
-		static void Set(string name, string value)
-		{
-			using (var envKey = Registry.LocalMachine.OpenSubKey(SubKeyPath, true))
-				if (envKey != null) envKey.SetValue(name, value);
-		}
-	}
+            return value;
+        }
+
+        static void Set(string name, string value)
+        {
+            using (var envKey = Registry.LocalMachine.OpenSubKey(SubKeyPath, true))
+                if (envKey != null) envKey.SetValue(name, value);
+        }
+    }
 }

@@ -5,7 +5,7 @@ namespace PDiffy.Web.Features.History
 {
 	public class HistoryViewModel
 	{
-		public IEnumerable<Shared.Image> DifferenceImages { get; set; }
+		public IEnumerable<HistoricalImage> DifferenceImages { get; set; }
 		public PageViewModel Page { get; set; }
 	}
 }

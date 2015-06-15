@@ -2,14 +2,15 @@
 using System.Web.Mvc;
 using PDiffy.Web.Features.Page;
 using PDiffy.Web.Features.Shared;
+using PDiffy.Web.Infrastructure;
 
-namespace PDiffy.Web.Features.Difference
+namespace PDiffy.Web.Features.Differences
 {
-    public class DifferenceController : Controller
+    public class DifferencesController : Controller
     {
         private readonly IImageStore _imageStore;
 
-        public DifferenceController(IImageStore imageStore)
+        public DifferencesController(IImageStore imageStore)
         {
             _imageStore = imageStore;
         }
@@ -21,10 +22,11 @@ namespace PDiffy.Web.Features.Difference
                 Name = page.Name,
                 LastComparisonDate = page.LastComparisonDate,
                 ComparisonStillValid = page.ComparisonStillValid,
-                HumanComparisonRequired = page.HumanComparisonRequired
+                HumanComparisonRequired = page.HumanComparisonRequired,
+                ComparisonExists = !(string.IsNullOrWhiteSpace(page.ComparisonImageUrl) && string.IsNullOrWhiteSpace(page.ComparisonImagePath))
             }).ToList();
 
-            return View("Index", new DifferenceViewModel { Pages = pages, NewPage = new PageViewModel() });
+            return View("Index", new DifferencesViewModel { Pages = pages, NewPage = new PageViewModel() });
         }
 
         public ActionResult Approve(string name)
@@ -41,14 +43,14 @@ namespace PDiffy.Web.Features.Difference
         public ActionResult Delete(string name)
         {
             Data.Biggy.PageList.Remove(Data.Biggy.PageList.Single(x => x.Name == name));
-            //_imageStore.DeleteImage(name);
+            _imageStore.Delete(name, new[] { Environment.OriginalId, Environment.ComparisonId, Environment.DifferenceId, Environment.LearnId });
             return RedirectToAction("Index");
         }
 
         public ActionResult DeleteAll()
         {
             Data.Biggy.PageList.Clear();
-            //_imageStore.DeleteImages();
+            _imageStore.DeleteAll();
             return RedirectToAction("Index");
         }
     }

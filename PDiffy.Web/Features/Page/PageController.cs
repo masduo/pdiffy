@@ -6,8 +6,8 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using Biggy.Core;
 using Castle.Core.Internal;
-using PDiffy.Web.Data;
 using PDiffy.Web.Features.Shared;
+using Environment = PDiffy.Web.Infrastructure.Environment;
 
 namespace PDiffy.Web.Features.Page
 {
@@ -16,7 +16,7 @@ namespace PDiffy.Web.Features.Page
         readonly BiggyList<PageModel> _pages;
         private readonly IImageStore _imageStore;
 
-        public PageController( IImageStore imageStore)
+        public PageController(IImageStore imageStore)
         {
             _pages = Data.Biggy.PageList;
             _imageStore = imageStore;
@@ -30,16 +30,16 @@ namespace PDiffy.Web.Features.Page
             {
                 Bitmap image;
                 using (var requestStream = await Request.Content.ReadAsStreamAsync())
-                    image =new Bitmap(requestStream);
+                    image = new Bitmap(requestStream);
 
                 var page = _pages.SingleOrDefault(x => x.Name == name);
 
                 if (page == null)
-                    _pages.Add(new PageModel { Name = name, OriginalImagePath = _imageStore.SaveImage(image, name + ".orig") });
+                    _pages.Add(new PageModel { Name = name, OriginalImagePath = _imageStore.Save(image, name + "." + Environment.OriginalId) });
                 else if (!page.HumanComparisonRequired)
                 {
-                    page.ComparisonImagePath = _imageStore.SaveImage(image, name + ".comp");
-                    page.GenerateComparison();
+                    page.ComparisonImagePath = _imageStore.Save(image, name + "." + Environment.ComparisonId);
+                    await Task.Run(() => page.GenerateComparison());
                     _pages.Update(page);
                 }
                 else
@@ -60,7 +60,7 @@ namespace PDiffy.Web.Features.Page
         }
 
         [HttpGet]
-        public JsonResult<Status> Update(string name, string imageUrl)
+        public async Task<JsonResult<Status>> Update(string name, string imageUrl)
         {
             var status = Status.Ok;
             try
@@ -72,7 +72,7 @@ namespace PDiffy.Web.Features.Page
                 else if (!page.HumanComparisonRequired)
                 {
                     page.ComparisonImageUrl = imageUrl;
-                    page.GenerateComparison();
+                    await Task.Run(() => page.GenerateComparison());
                     _pages.Update(page);
                 }
                 else

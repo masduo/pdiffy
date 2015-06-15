@@ -1,46 +1,49 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Quarks;
+using Quarks.IEnumerableExtensions;
 using Environment = PDiffy.Web.Infrastructure.Environment;
 
 namespace PDiffy.Web.Features.Shared
 {
     public class ImageStore : IImageStore
     {
-        public string SaveImage(System.Drawing.Image image, string name)
+        public string Save(System.Drawing.Image image, string name)
         {
-            var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, SystemTime.Now.ToString("yyyyMMdd-HHmmss"), "png"));
-            var folder = Path.GetDirectoryName(fullPath);
+            using (image)
+            {
 
-            if (folder != null && !Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
+                var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, SystemTime.Now.ToString("yyyyMMdd-HHmmss"), "png"));
+                var folder = Path.GetDirectoryName(fullPath);
 
-            image.Save(fullPath);
+                if (folder != null && !Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
 
-            return fullPath;
+                image.Save(fullPath);
+
+                return fullPath;
+            }
         }
 
-        public void DeleteImage(string name)
+        public void Delete(string name, string[] imageTypes)
         {
-            throw new NotImplementedException();
+            imageTypes.SelectMany(imageType => Get(name, imageType)).ForEach(File.Delete);
         }
 
-        public void DeleteImages()
+        public void DeleteAll()
         {
-            //Directory.Delete(Environment.ImageStorePath, true);
-            throw new NotImplementedException();
+            Directory.Delete(Environment.ImageStorePath, true);
         }
 
-        public string[] GetImages(string name, string imageType)
+        public string[] Get(string name, string imageType)
         {
             var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, SystemTime.Now.ToString("yyyyMMdd-HHmmss"), "png"));
             var folder = Path.GetDirectoryName(fullPath);
 
             var files = folder == Environment.ImageStorePath
                 ? Directory.GetFiles(folder)
-                    .Where(path => Path.GetFileName(path).Split('.')[0] == name && Path.GetFileName(path).Split('.')[1] == imageType).ToArray()
-                : Directory.GetFiles(folder).Where(path => Path.GetFileName(path).Split('.')[1] == imageType).ToArray();
+                    .Where(path => Path.GetFileName(path).Name() == name && Path.GetFileName(path).Type() == imageType).ToArray()
+                : Directory.GetFiles(folder).Where(path => Path.GetFileName(path).Type() == imageType).ToArray();
 
             return files;
 
@@ -49,9 +52,9 @@ namespace PDiffy.Web.Features.Shared
 
     public interface IImageStore
     {
-        string SaveImage(System.Drawing.Image image, string name);
-        string[] GetImages(string name, string imageType);
-        void DeleteImages();
-        void DeleteImage(string name);
+        string Save(System.Drawing.Image image, string name);
+        string[] Get(string name, string imageType);
+        void DeleteAll();
+        void Delete(string name, string[] imageTypes);
     }
 }

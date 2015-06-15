@@ -9,9 +9,7 @@ namespace PDiffy.Web.Features.Page
 		public DateTime? LastComparisonDate { get; set; }
 		public bool HumanComparisonRequired { get; set; }
 
-		public string OriginalImageUrl { get; set; }
-		public string ComparisonImageUrl { get; set; }
-
+        public bool ComparisonExists { get; set; }
 		public bool ComparisonStillValid { get; set; }
 	}
 }
