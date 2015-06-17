@@ -1,5 +1,6 @@
-# P Diffy 
 ![alt text](https://github.com/SeatwaveOpenSource/pdiffy/blob/master/pdiffy_logo.PNG "P Diffy")
+
+###P Diffy the perceptual difference image tool.
 
 ##Running the web app
 1. Clone this repo
