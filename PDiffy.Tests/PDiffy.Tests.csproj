@@ -34,11 +34,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Machine.Fakes">
-      <HintPath>..\packages\Machine.Fakes.2.5.0\lib\net40\Machine.Fakes.dll</HintPath>
+    <Reference Include="Machine.Fakes, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Machine.Fakes.2.6.0\lib\net40\Machine.Fakes.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Machine.Fakes.Adapters.Moq">
-      <HintPath>..\packages\Machine.Fakes.Moq.2.5.0\lib\net40\Machine.Fakes.Adapters.Moq.dll</HintPath>
+    <Reference Include="Machine.Fakes.Adapters.Moq, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Machine.Fakes.Moq.2.6.0\lib\net40\Machine.Fakes.Adapters.Moq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Machine.Specifications">
       <HintPath>..\packages\Machine.Specifications.0.9.1\lib\net45\Machine.Specifications.dll</HintPath>
