@@ -191,5 +191,5 @@ ModelManifest.xml
 *.ncrunchsolution
 
 ImageDiff.Web/Images/
-*.bat
 PDiffy.Web/Images/
+builds/
