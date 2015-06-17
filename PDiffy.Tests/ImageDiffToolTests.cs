@@ -2,6 +2,7 @@
 using System.Drawing;
 using Machine.Fakes;
 using Machine.Specifications;
+using PDiffy.Features.Shared;
 
 namespace PDiffy.Tests
 {
