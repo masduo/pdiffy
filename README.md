@@ -1,5 +1,7 @@
+#P Diffy
+##A perceptual difference image tool.
+
 ![alt text](https://github.com/SeatwaveOpenSource/pdiffy/blob/master/pdiffy_logo.PNG "P Diffy")
-###The perceptual difference image tool.
 
 ##Running the web app
 1. Clone this repo
@@ -42,4 +44,3 @@ var response = request.GetResponse();
 * **http://yourhosting.something**
 * **http://yourhosting.something/api/update?name=nameofcomparison&imageUrl=yourimageurl**
 * **http://yourhosting.something/api/update?name=nameofcomparison**
-
