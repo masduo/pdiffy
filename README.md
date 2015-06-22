@@ -6,7 +6,8 @@
 ##Running the web app
 1. Clone this repo
 2. Restore Nuget Packages
-3. Run this using Visual Studio (2013 or later) or host it somewhere
+3. Run this using Visual Studio (2013 or later) or host it somewhere **(run it as an admin)**
+4. **(This step is required if you don't give P Diffy all the required permissions)** Add the environment variables *pdiffyImageStorePath* and *pdiffyDataStorePath* and set the values to wherever you want to store the images and data P Diffy requires
 
 ##Using P Diffy
 
