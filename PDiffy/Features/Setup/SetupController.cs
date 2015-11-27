@@ -1,23 +1,23 @@
 ﻿using System.Web.Mvc;
-using PDiffy.Infrastructure;
+using Environment = PDiffy.Infrastructure.Environment;
 
 namespace PDiffy.Features.Setup
 {
-	public class SetupController : Controller
+	public partial class SetupController : Controller
 	{
-		public ActionResult Index()
+		public virtual ActionResult Index()
 		{
 			if (!string.IsNullOrWhiteSpace(Environment.ImageStorePath) && !string.IsNullOrWhiteSpace(Environment.DataStorePath))
-				return RedirectToAction("Index", "Differences");
-			return View();
+				return RedirectToAction(MVC.Differences.Index());
+			return View(MVC.Setup.Views.Index);
 		}
 
-		public ActionResult Setup(string imageStorePath, string dataStorePath)
+		public virtual ActionResult Setup(string imageStorePath, string dataStorePath)
 		{
 			Environment.ImageStorePath = imageStorePath;
 			Environment.DataStorePath = dataStorePath;
 
-			return RedirectToAction("Index", "Differences");
+			return RedirectToAction(MVC.Differences.Index());
 		}
 	}
 }

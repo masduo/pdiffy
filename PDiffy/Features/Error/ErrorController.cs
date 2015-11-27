@@ -1,17 +1,20 @@
-﻿using System.Web.Mvc;
+﻿using System.Net;
+using System.Web.Mvc;
 
 namespace PDiffy.Features.Error
 {
-	public class ErrorController : Controller
+	public partial class ErrorController : Controller
 	{
-		public ActionResult NotFound()
+		public virtual ActionResult Http404()
 		{
-			return View("404");
+			Response.StatusCode = (int)HttpStatusCode.NotFound;
+			return View(MVC.Error.Views._404);
 		}
 
-		public ActionResult ServiceUnavailable()
+		public virtual ActionResult Http500()
 		{
-			return View("500");
+			Response.StatusCode = (int)HttpStatusCode.ServiceUnavailable;
+			return View(MVC.Error.Views._500);
 		}
 	}
 }

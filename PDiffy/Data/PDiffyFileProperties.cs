@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace PDiffy.Features.Shared
+namespace PDiffy.Data
 {
 
     public static class PDiffyFileProperties

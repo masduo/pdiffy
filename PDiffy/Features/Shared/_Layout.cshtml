@@ -9,15 +9,13 @@
 	<header class="header align-center text-align-center">
 		<img src="~/Content/logo.png" alt="pdiffyLogo" class="logo"/>
 		<h1>P Diffy</h1>
-		@*@Html.Partial("_AsciiBanner")*@
 	</header>
 	@RenderBody()
-	<footer class="align-center text-align-center">
-		<link href="~/Features/Shared/Shared.css" rel="stylesheet" />
-		<link href="~/Features/Shared/Buttons.css" rel="stylesheet" />
-		<link href="~/Features/Shared/Modals.css" rel="stylesheet" />
-		<link href="~/Features/Differences/Difference.css" rel="stylesheet" />
+	<footer class="footer align-center text-align-center">
 		<i>β</i>
+		@RenderSection("Styles", required: false)
+		<script src="~/Scripts/Shared.generated.js" type="text/javascript"></script>
+		@RenderSection("Scripts", required: false)
 	</footer>
 </body>
 </html>

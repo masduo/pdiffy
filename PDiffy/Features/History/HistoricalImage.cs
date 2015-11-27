@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
-using PDiffy.Features.Shared;
+using PDiffy.Data;
 using Quarks.ImageExtensions;
 
 namespace PDiffy.Features.History

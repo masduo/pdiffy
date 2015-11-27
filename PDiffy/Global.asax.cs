@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -25,6 +26,26 @@ namespace PDiffy
 			ControllerBuilder.Current.SetControllerFactory(controllerFactory);
 			GlobalConfiguration.Configuration.DependencyResolver = new WindsorDependencyResolver(_container);
         }
+
+		void Application_Error(object sender, EventArgs e)
+		{
+			if (Request.IsLocal)
+				return;
+
+			var lastError = Server.GetLastError();
+			var httpStatusCode = 500;
+
+			if ((lastError is HttpException))
+				httpStatusCode = (lastError as HttpException).GetHttpCode();
+
+			Response.Clear();
+			Server.ClearError();
+			Response.TrySkipIisCustomErrors = true;
+
+			var path = Request.Path;
+			Context.Server.TransferRequest(string.Format("~/Error/Http{0}", httpStatusCode), false);
+			Context.RewritePath(path, false);
+		}
 
 		protected void Application_End()
 		{

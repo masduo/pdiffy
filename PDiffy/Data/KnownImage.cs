@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace PDiffy.Features.History
+namespace PDiffy.Data
 {
-    public class KnownImageModel
+    public class KnownImage
     {
         public string Name { get; set; }
         public DateTime CreatedDate { get; set; }

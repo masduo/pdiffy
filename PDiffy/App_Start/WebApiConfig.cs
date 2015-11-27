@@ -7,7 +7,7 @@ namespace PDiffy
     {
         public static void Register(HttpConfiguration config)
         {
-            config.MapHttpAttributeRoutes();
+			//config.MapHttpAttributeRoutes();
 
 			config.Formatters.JsonFormatter.SupportedMediaTypes
 				.Add(new MediaTypeHeaderValue("text/html"));

@@ -1,57 +1,37 @@
-﻿using System.Linq;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using PDiffy.Features.Page;
-using PDiffy.Features.Shared;
-using PDiffy.Infrastructure;
+using MediatR;
 
 namespace PDiffy.Features.Differences
 {
-    public class DifferencesController : Controller
+	public partial class DifferencesController : Controller
     {
-        private readonly IImageStore _imageStore;
+	    readonly IMediator _mediator;
 
-        public DifferencesController(IImageStore imageStore)
-        {
-            _imageStore = imageStore;
+	    public DifferencesController(IMediator mediator)
+	    {
+		    _mediator = mediator;
+	    }
+
+		public virtual async Task<ActionResult> Index(Index.Query query)
+	    {
+		    var model = await _mediator.SendAsync(query);
+
+            return View(MVC.Differences.Views.Index, model);
         }
 
-        public ActionResult Index()
-        {
-            var pages = Data.Biggy.PageList.Select(page => new PageViewModel
-            {
-                Name = page.Name,
-                LastComparisonDate = page.LastComparisonDate,
-                ComparisonStillValid = page.ComparisonStillValid,
-                HumanComparisonRequired = page.HumanComparisonRequired,
-                ComparisonExists = !(string.IsNullOrWhiteSpace(page.ComparisonImageUrl) && string.IsNullOrWhiteSpace(page.ComparisonImagePath))
-            }).ToList();
+		public virtual async Task<ActionResult> Approve(Approve.Command model)
+	    {
+		    await _mediator.SendAsync(model);
 
-            return View("Index", new DifferencesViewModel { Pages = pages, NewPage = new PageViewModel() });
-        }
+		    return RedirectToAction(MVC.Differences.Index());
+	    }
 
-        public ActionResult Approve(string name)
-        {
-            var page = Data.Biggy.PageList.Single(x => x.Name == name);
+		public virtual async Task<ActionResult> Delete(Delete.Command model)
+	    {
+		    await _mediator.SendAsync(model);
 
-            page.Approve();
-
-            Data.Biggy.PageList.Update(page);
-
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult Delete(string name)
-        {
-            Data.Biggy.PageList.Remove(Data.Biggy.PageList.Single(x => x.Name == name));
-            _imageStore.Delete(name, new[] { Environment.OriginalId, Environment.ComparisonId, Environment.DifferenceId, Environment.LearnId });
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult DeleteAll()
-        {
-            Data.Biggy.PageList.Clear();
-            _imageStore.DeleteAll();
-            return RedirectToAction("Index");
-        }
+			return RedirectToAction(MVC.Differences.Index());
+	    }
     }
 }

@@ -1,0 +1,1 @@
+﻿var description = module.exports = console.log("I'm a history specific component");

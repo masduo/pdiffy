@@ -4,7 +4,7 @@ using PDiffy.Infrastructure;
 using Quarks;
 using Quarks.IEnumerableExtensions;
 
-namespace PDiffy.Features.Shared
+namespace PDiffy.Data.Stores
 {
     public class ImageStore : IImageStore
     {
@@ -46,7 +46,6 @@ namespace PDiffy.Features.Shared
                 : Directory.GetFiles(folder).Where(path => Path.GetFileName(path).Type() == imageType).ToArray();
 
             return files;
-
         }
     }
 

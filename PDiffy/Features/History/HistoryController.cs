@@ -1,53 +1,30 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using PDiffy.Features.Page;
-using PDiffy.Features.Shared;
-using Environment = PDiffy.Infrastructure.Environment;
+using MediatR;
 
 namespace PDiffy.Features.History
 {
-    public class HistoryController : Controller
-    {
-        private readonly IImageStore _imageStore;
+	public partial class HistoryController : Controller
+	{
+		readonly IMediator _mediator;
 
-        public HistoryController(IImageStore imageStore)
-        {
-            _imageStore = imageStore;
-        }
+		public HistoryController(IMediator mediator)
+		{
+			_mediator = mediator;
+		}
 
-        public ActionResult Index(string name)
-        {
-            var page = Data.Biggy.PageList.Single(x => x.Name == name);
+		public virtual async Task<ActionResult> Index(Index.Query query)
+		{
+			var model = await _mediator.SendAsync(query);
 
-            var historyViewModel = new HistoryViewModel
-            {
-                Page = new PageViewModel
-                    {
-                        Name = page.Name,
-                        LastComparisonDate = page.LastComparisonDate,
-                        ComparisonStillValid = page.ComparisonStillValid,
-                        HumanComparisonRequired = page.HumanComparisonRequired
-                    },
-                DifferenceImages = _imageStore.Get(name, Environment.DifferenceId).Select(x => new HistoricalImage(x))
-            };
+			return View(MVC.History.Views.Index, model);
+		}
 
-            return View(historyViewModel);
-        }
+		public virtual async Task<ActionResult> Learn(Learn.Command model)
+		{
+			await _mediator.SendAsync(model);
 
-        public ActionResult Learn(string name, DateTime createdDate)
-        {
-            var differenceImage = _imageStore.Get(name, Environment.DifferenceId).Select(x => new HistoricalImage(x)).Single(x => x.CreatedDate == createdDate);
-
-            Data.Biggy.KnownImageList.Add(new KnownImageModel
-            {
-                Name = name,
-                CreatedDate = createdDate,
-                ImagePath = _imageStore.Save(new Bitmap(differenceImage.ImagePath), name + "." + Environment.LearnId)
-            });
-
-            return RedirectToAction("Index", new { name });
-        }
-    }
+			return RedirectToAction(MVC.History.Index());
+		}
+	}
 }

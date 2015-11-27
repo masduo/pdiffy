@@ -4,6 +4,7 @@ namespace PDiffy.Infrastructure
 {
     public static class Environment
     {
+	    public static readonly string[] AllImageTypes = { OriginalId, ComparisonId, DifferenceId, LearnId };
         public const string OriginalId = "orig";
         public const string ComparisonId = "comp";
         public const string DifferenceId = "diff";

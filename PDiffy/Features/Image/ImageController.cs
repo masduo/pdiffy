@@ -1,49 +1,38 @@
 ﻿using System;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using PDiffy.Features.Shared;
-using Quarks.ImageExtensions;
-using Environment = PDiffy.Infrastructure.Environment;
+using MediatR;
 
 namespace PDiffy.Features.Image
 {
-    public class ImageController : Controller
-    {
-        private readonly IImageStore _imageStore;
+	public partial class ImageController : Controller
+	{
+		readonly IMediator _mediator;
 
-        public ImageController(IImageStore imageStore)
-        {
-            _imageStore = imageStore;
-        }
+		public ImageController(IMediator mediator)
+		{
+			_mediator = mediator;
+		}
 
-        [OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
-        public FileContentResult DifferenceImage(string name, DateTime? lastComparisonDate)
-        {
-            var page = Data.Biggy.PageList.Single(x => x.Name == name);
+		[OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
+		public async Task<FileContentResult> DifferenceImage(string name, DateTime? lastComparisonDate)
+		{
+			var model = await _mediator.SendAsync(new DifferenceImage.Query { Name = name });
+			return File(model.ImageData, "image/png");
+		}
 
-            if (string.IsNullOrWhiteSpace(page.DifferenceImagePath))
-            {
-                page.DifferenceImagePath = _imageStore.Save(page.DifferenceImage, page.Name + "." + Environment.DifferenceId);
-                Data.Biggy.PageList.Update(page);
-            }
+		[OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
+		public async Task<FileContentResult> ComparisonImage(string name, DateTime? lastComparisonDate)
+		{
+			var model = await _mediator.SendAsync(new ComparisonImage.Query { Name = name });
+			return File(model.ImageData, "image/png");
+		}
 
-            return File(page.DifferenceImage.ToByteArray(), "image/png");
-        }
-
-        [OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
-        public FileContentResult ComparisonImage(string name, DateTime? lastComparisonDate)
-        {
-            var page = Data.Biggy.PageList.Single(x => x.Name == name);
-
-            return File(page.ComparisonImage.ToByteArray(), "image/png");
-        }
-
-        [OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
-        public FileContentResult OriginalImage(string name, DateTime? lastComparisonDate)
-        {
-            var page = Data.Biggy.PageList.Single(x => x.Name == name);
-
-            return File(page.OriginalImage.ToByteArray(), "image/png");
-        }
-    }
+		[OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
+		public async Task<FileContentResult> OriginalImage(string name, DateTime? lastComparisonDate)
+		{
+			var model = await _mediator.SendAsync(new OriginalImage.Query { Name = name });
+			return File(model.ImageData, "image/png");
+		}
+	}
 }
