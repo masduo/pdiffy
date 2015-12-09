@@ -140,7 +140,6 @@
     </None>
     <Content Include="Content\logo.png" />
     <Content Include="Features\Error\Error.scss" />
-    <None Include="Features\Shared\Differences.scss" />
     <Content Include="Features\Differences\Differences.js" />
     <Content Include="Features\History\Components\Description.js" />
     <Content Include="Features\History\History.js" />

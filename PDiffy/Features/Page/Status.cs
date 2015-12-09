@@ -2,10 +2,10 @@
 {
     public class Status
     {
-        public bool Success { get; set; }
+        public bool IsSuccess { get; set; }
         public string Message { get; set; }
 
-        public static Status Ok { get { return new Status { Success = true }; } }
+		public static Status Ok { get { return new Status { IsSuccess = true }; } }
         public static Status HumanComparisonRequired
         {
             get
