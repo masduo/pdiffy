@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
@@ -41,7 +41,14 @@ namespace PDiffy.Features.Page
 				var page = Data.Biggy.PageList.SingleOrDefault(x => x.Name == message.Name);
 
 				if (page == null)
-					Data.Biggy.PageList.Add(new Data.Page { Name = message.Name, OriginalImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.OriginalId) });
+				{
+					Data.Biggy.PageList.Add(
+						new Data.Page
+						{
+							Name = message.Name,
+							OriginalImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.OriginalId)
+						});
+				}
 				else if (!page.HumanComparisonRequired)
 				{
 					page.ComparisonImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.ComparisonId);

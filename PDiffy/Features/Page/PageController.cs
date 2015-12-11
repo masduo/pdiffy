@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
@@ -18,6 +18,9 @@ namespace PDiffy.Features.Page
 		[HttpPost]
 		public async Task<JsonResult<Status>> Update(string name)
 		{
+			if (string.IsNullOrEmpty(name))
+				return Json(Status.GetWrongInput(name));
+
 			Bitmap image;
 			using (var requestStream = await Request.Content.ReadAsStreamAsync())
 				image = new Bitmap(requestStream);
