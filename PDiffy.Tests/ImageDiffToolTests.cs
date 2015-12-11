@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using Machine.Fakes;
 using Machine.Specifications;
@@ -75,7 +75,7 @@ namespace PDiffy.Tests
 			result.Message.ShouldEqual("one or more image might be too large");
 
 		Because of = () =>
-			result = Catch.Exception((Action) (() => Subject.Compare(new Bitmap(5000, 5000), new Bitmap(5000, 5000))));
+			result = Catch.Exception((Action) (() => Subject.Compare(new Bitmap(2001, 2000), new Bitmap(2001, 2000))));
 
 		static Exception result;
 	}
@@ -193,7 +193,7 @@ namespace PDiffy.Tests
 			result.Message.ShouldEqual("one or more image might be too large");
 
 		Because of = () =>
-			result = Catch.Exception((Action) (() => Subject.CreateDifferenceImage(new Bitmap(5000, 5000), new Bitmap(5000, 5000))));
+			result = Catch.Exception((Action) (() => Subject.CreateDifferenceImage(new Bitmap(2001, 2000), new Bitmap(2001, 2000))));
 
 		static Exception result;
 	}
