@@ -101,11 +101,13 @@ namespace PDiffy.Features.Error
                 public readonly string _Ascii500 = "_Ascii500";
                 public readonly string _404 = "404";
                 public readonly string _500 = "500";
+                public readonly string Error = "Error";
             }
             public readonly string _Ascii404 = "~/Features/Error/_Ascii404.cshtml";
             public readonly string _Ascii500 = "~/Features/Error/_Ascii500.cshtml";
             public readonly string _404 = "~/Features/Error/404.cshtml";
             public readonly string _500 = "~/Features/Error/500.cshtml";
+            public readonly string Error = "~/Features/Error/Error.scss";
         }
     }
 

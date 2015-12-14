@@ -41,10 +41,16 @@ namespace T4MVC
                 public readonly string _AsciiBanner = "_AsciiBanner";
                 public readonly string _Layout = "_Layout";
                 public readonly string _ModalExample = "_ModalExample";
+                public readonly string Buttons = "Buttons";
+                public readonly string Modals = "Modals";
+                public readonly string Shared = "Shared";
             }
             public readonly string _AsciiBanner = "~/Features/Shared/_AsciiBanner.cshtml";
             public readonly string _Layout = "~/Features/Shared/_Layout.cshtml";
             public readonly string _ModalExample = "~/Features/Shared/_ModalExample.cshtml";
+            public readonly string Buttons = "~/Features/Shared/Buttons.scss";
+            public readonly string Modals = "~/Features/Shared/Modals.scss";
+            public readonly string Shared = "~/Features/Shared/Shared.scss";
         }
     }
 

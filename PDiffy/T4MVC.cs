@@ -71,21 +71,48 @@ internal partial class T4MVC_System_Web_Mvc_ActionResult : System.Web.Mvc.Action
 namespace Links
 {
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public static class Content {
-        private const string URLPATH = "~/Content";
+    public static class Scripts {
+        private const string URLPATH = "~/Scripts";
         public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
         public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
-        public static readonly string logo_png = Url("logo.png");
+        public static readonly string Differences_generated_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Differences.generated.min.js") ? Url("Differences.generated.min.js") : Url("Differences.generated.js");
+        public static readonly string History_generated_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/History.generated.min.js") ? Url("History.generated.min.js") : Url("History.generated.js");
+        public static readonly string Shared_generated_js = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Shared.generated.min.js") ? Url("Shared.generated.min.js") : Url("Shared.generated.js");
+    }
+
+    [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+    public static class Styles {
+        private const string URLPATH = "~/Styles";
+        public static string Url() { return T4MVCHelpers.ProcessVirtualPath(URLPATH); }
+        public static string Url(string fileName) { return T4MVCHelpers.ProcessVirtualPath(URLPATH + "/" + fileName); }
+        public static readonly string Differences_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Differences.min.css") ? Url("Differences.min.css") : Url("Differences.css");
+             
+        public static readonly string Error_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Error.min.css") ? Url("Error.min.css") : Url("Error.css");
+             
+        public static readonly string History_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/History.min.css") ? Url("History.min.css") : Url("History.css");
+             
     }
 
     
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
     public static partial class Bundles
     {
-        public static partial class Content 
+        public static partial class Scripts 
         {
             public static class Assets
             {
+                public const string Differences_generated_js = "~/Scripts/Differences.generated.js"; 
+                public const string History_generated_js = "~/Scripts/History.generated.js"; 
+                public const string Shared_generated_js = "~/Scripts/Shared.generated.js"; 
+            }
+        }
+        public static partial class Styles 
+        {
+            public static class Assets
+            {
+                public const string Differences_css = "~/Styles/Differences.css";
+                public const string Error_css = "~/Styles/Error.css";
+                public const string History_css = "~/Styles/History.css";
             }
         }
     }

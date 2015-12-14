@@ -124,9 +124,22 @@ namespace PDiffy.Features.History
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string History = "History";
                 public readonly string Index = "Index";
             }
+            public readonly string History = "~/Features/History/History.scss";
             public readonly string Index = "~/Features/History/Index.cshtml";
+            static readonly _ComponentsClass s_Components = new _ComponentsClass();
+            public _ComponentsClass Components { get { return s_Components; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _ComponentsClass
+            {
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass
+                {
+                }
+            }
         }
     }
 

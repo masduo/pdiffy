@@ -141,8 +141,10 @@ namespace PDiffy.Features.Differences
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Differences = "Differences";
                 public readonly string Index = "Index";
             }
+            public readonly string Differences = "~/Features/Differences/Differences.scss";
             public readonly string Index = "~/Features/Differences/Index.cshtml";
         }
     }
