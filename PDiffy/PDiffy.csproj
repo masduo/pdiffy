@@ -150,10 +150,13 @@
     <None Include="Features\Shared\Buttons.scss" />
     <None Include="Features\Shared\Modals.scss" />
     <None Include="Features\Shared\Shared.scss" />
+    <Content Include="Features\TextDifferences\TextDifferences.js" />
     <Content Include="Global.asax" />
     <Content Include="Features\Differences\Differences.scss" />
     <Content Include="Infrastructure\FrontEndConfiguration\package.json" />
     <Content Include="Infrastructure\FrontEndConfiguration\excluded.features.js" />
+    <Content Include="Features\TextDifferences\TextDifferences.scss" />
+    <Content Include="Features\TextDifferences\Index.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Infrastructure\FrontEndConfiguration\gulpfile.js" />
     <Content Include="Infrastructure\FrontEndConfiguration\paths.js" />
@@ -204,6 +207,10 @@
     <Compile Include="Features\Setup\SetupController.cs" />
     <Compile Include="Features\Shared\DiffMatchPatch.cs" />
     <Compile Include="Features\Shared\ImageDiffTool.cs" />
+    <Compile Include="Features\TextDifferences\Approve.cs" />
+    <Compile Include="Features\TextDifferences\Delete.cs" />
+    <Compile Include="Features\TextDifferences\TextDifferencesController.cs" />
+    <Compile Include="Features\TextDifferences\Index.cs" />
     <Compile Include="HistoryController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -246,6 +253,9 @@
     <Compile Include="T4MVC.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TextDifferencesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
   </ItemGroup>
