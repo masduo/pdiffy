@@ -35,6 +35,7 @@ public static partial class MVC
     public static PDiffy.Features.TextDifferences.TextDifferencesController TextDifferences = new PDiffy.Features.TextDifferences.T4MVC_TextDifferencesController();
     public static T4MVC.PageController Page = new T4MVC.PageController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
+    public static T4MVC.TextController Text = new T4MVC.TextController();
 }
 
 namespace T4MVC
