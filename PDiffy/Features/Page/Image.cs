@@ -43,7 +43,7 @@ namespace PDiffy.Features.Page
 				if (page == null)
 				{
 					Data.Biggy.PageList.Add(
-						new Data.Page
+						new Data.ImageResource
 						{
 							Name = message.Name,
 							OriginalImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.OriginalId)

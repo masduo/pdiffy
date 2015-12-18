@@ -203,7 +203,7 @@
     <Compile Include="Features\Text\TextController.cs" />
     <Compile Include="Features\Text\Text.cs" />
     <Compile Include="Features\Page\Image.cs" />
-    <Compile Include="Data\Page.cs" />
+    <Compile Include="Data\ImageResource.cs" />
     <Compile Include="Features\Error\ErrorController.cs" />
     <Compile Include="Features\Page\PageController.cs" />
     <Compile Include="Features\Page\WebImage.cs" />

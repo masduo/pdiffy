@@ -10,16 +10,16 @@ namespace PDiffy.Data
 		//NOTE: If it is needed to clean data, leave an empty json array [{}] in the file or delete it,
 		// otherwise biggy's list initialization will fail with source cannot be null exception.
 
-		private static BiggyList<Page> _biggyPageList;
+		private static BiggyList<ImageResource> _biggyPageList;
 		private static BiggyList<KnownImage> _biggyKnownImageList;
 		private static BiggyList<TextDiffPage> _textDiffPageList;
 
-		public static BiggyList<Page> PageList
+		public static BiggyList<ImageResource> PageList
 		{
 			get
 			{
 				return _biggyPageList
-					?? (_biggyPageList = new BiggyList<Page>(new JsonStore<Page>(Environment.DataStorePath, "Biggy", "Pages")));
+					?? (_biggyPageList = new BiggyList<ImageResource>(new JsonStore<ImageResource>(Environment.DataStorePath, "Biggy", "Pages")));
 			}
 		}
 

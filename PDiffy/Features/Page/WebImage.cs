@@ -31,7 +31,7 @@ namespace PDiffy.Features.Page
 				var page = Data.Biggy.PageList.SingleOrDefault(x => x.Name == message.Name);
 
 				if (page == null)
-					Data.Biggy.PageList.Add(new Data.Page { Name = message.Name, OriginalImageUrl = message.Url });
+					Data.Biggy.PageList.Add(new Data.ImageResource { Name = message.Name, OriginalImageUrl = message.Url });
 				else if (!page.HumanComparisonRequired)
 				{
 					page.ComparisonImageUrl = message.Url;
