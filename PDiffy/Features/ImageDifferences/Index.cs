@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 
-namespace PDiffy.Features.Differences
+namespace PDiffy.Features.ImageDifferences
 {
 	public class Index
 	{

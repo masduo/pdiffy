@@ -25,19 +25,16 @@
 				@if (page.HumanComparisonRequired)
 				{
 					<div class="original-text">
-						<h4>Original Text</h4>
 						<p class="pre-wrap-white-space">@page.OriginalText</p>
 
 					</div>
 					if (page.ComparisonExists)
 					{
 						<div class="comparison-text">
-							<h4>Compared to</h4>
 							<p class="pre-wrap-white-space">@page.ComparisonText</p>
 						</div>
 					}
 					<div class="differences-text">
-						<h4>Differences</h4>
 						<p>@Html.Raw(Server.HtmlDecode(page.DifferenceText.Replace("&amp;para;", string.Empty)))</p>
 					</div>
 				}
@@ -46,7 +43,7 @@
 			<div class="controls">
 				@if (page.HumanComparisonRequired)
 				{
-					@Html.ActionLink("Approve Difference", "Approve", "Differences", new { name = page.Name }, new { @class = "btn" })
+					@Html.ActionLink("Approve Difference", "Approve", "ImageDifferences", new { name = page.Name }, new { @class = "btn" })
 				}
 
 				<a class="btn align-center" href="@Url.Action("Index", "History", new { name = page.Name })">History</a>

@@ -6,6 +6,8 @@
 // Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
 // 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
 // 0114: suppress "Foo.BarController.Baz()' hides inherited member 'Qux.BarController.Baz()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword." when an action (with an argument) overrides an action in a parent controller
+
+using PDiffy.Features.ImageDifferences;
 #pragma warning disable 1591, 3008, 3009, 0108, 0114
 #region T4MVC
 
@@ -23,12 +25,12 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace PDiffy.Features.Differences
+namespace PDiffy.Features.ImageDifferences
 {
-    public partial class DifferencesController
+    public partial class ImageDifferencesController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected DifferencesController(Dummy d) { }
+        protected ImageDifferencesController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -79,13 +81,13 @@ namespace PDiffy.Features.Differences
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public DifferencesController Actions { get { return MVC.Differences; } }
+        public ImageDifferencesController Actions { get { return MVC.ImageDifferences; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Differences";
+        public readonly string Name = "ImageDifferences";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Differences";
+        public const string NameConst = "ImageDifferences";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -141,24 +143,24 @@ namespace PDiffy.Features.Differences
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
-                public readonly string Differences = "Differences";
+                public readonly string ImageDifferences = "ImageDifferences";
                 public readonly string Index = "Index";
             }
-            public readonly string Differences = "~/Features/Differences/Differences.scss";
-            public readonly string Index = "~/Features/Differences/Index.cshtml";
+            public readonly string ImageDifferences = "~/Features/ImageDifferences/ImageDifferences.scss";
+            public readonly string Index = "~/Features/ImageDifferences/Index.cshtml";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_DifferencesController : PDiffy.Features.Differences.DifferencesController
+    public partial class T4MVC_ImageDifferencesController : PDiffy.Features.ImageDifferences.ImageDifferencesController
     {
-        public T4MVC_DifferencesController() : base(Dummy.Instance) { }
+        public T4MVC_ImageDifferencesController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.Differences.Index.Query query);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Index.Query query);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index(PDiffy.Features.Differences.Index.Query query)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index(Index.Query query)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "query", query);
@@ -167,10 +169,10 @@ namespace PDiffy.Features.Differences
         }
 
         [NonAction]
-        partial void ApproveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.Differences.Approve.Command model);
+        partial void ApproveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Approve.Command model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Approve(PDiffy.Features.Differences.Approve.Command model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Approve(Approve.Command model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Approve);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -179,10 +181,10 @@ namespace PDiffy.Features.Differences
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.Differences.Delete.Command model);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Delete.Command model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Delete(PDiffy.Features.Differences.Delete.Command model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Delete(Delete.Command model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

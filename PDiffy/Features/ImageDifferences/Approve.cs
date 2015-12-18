@@ -4,7 +4,7 @@ using FluentValidation;
 using MediatR;
 using Quarks;
 
-namespace PDiffy.Features.Differences
+namespace PDiffy.Features.ImageDifferences
 {
 	public class Approve
 	{

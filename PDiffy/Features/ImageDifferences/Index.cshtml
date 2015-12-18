@@ -1,4 +1,4 @@
-﻿@model IList<PDiffy.Features.Differences.Index.Model>
+﻿@model IList<PDiffy.Features.ImageDifferences.Index.Model>
 
 @{
 	Layout = "~/Features/Shared/_Layout.cshtml";
@@ -43,7 +43,7 @@
 			<div class="controls">
 				@if (page.HumanComparisonRequired)
 				{
-					@Html.ActionLink("Approve Difference", "Approve", "Differences", new { name = page.Name }, new { @class = "btn" })
+					@Html.ActionLink("Approve Difference", "Approve", "ImageDifferences", new { name = page.Name }, new { @class = "btn" })
 				}
 
 				<a class="btn align-center" href="@Url.Action("Index", "History", new { name = page.Name })">History</a>

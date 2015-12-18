@@ -5,7 +5,7 @@ using MediatR;
 using PDiffy.Data.Stores;
 using PDiffy.Infrastructure;
 
-namespace PDiffy.Features.Differences
+namespace PDiffy.Features.ImageDifferences
 {
 	public class Delete
 	{

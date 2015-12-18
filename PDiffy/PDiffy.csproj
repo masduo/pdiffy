@@ -140,7 +140,7 @@
     </None>
     <Content Include="Content\logo.png" />
     <Content Include="Features\Error\Error.scss" />
-    <Content Include="Features\Differences\Differences.js" />
+    <Content Include="Features\ImageDifferences\ImageDifferences.js" />
     <Content Include="Features\History\Components\Description.js" />
     <Content Include="Features\History\History.js" />
     <Content Include="Features\Setup\Index.cshtml">
@@ -152,7 +152,7 @@
     <None Include="Features\Shared\Shared.scss" />
     <Content Include="Features\TextDifferences\TextDifferences.js" />
     <Content Include="Global.asax" />
-    <Content Include="Features\Differences\Differences.scss" />
+    <Content Include="Features\ImageDifferences\ImageDifferences.scss" />
     <Content Include="Infrastructure\FrontEndConfiguration\package.json" />
     <Content Include="Infrastructure\FrontEndConfiguration\excluded.features.js" />
     <Content Include="Features\TextDifferences\TextDifferences.scss" />
@@ -180,16 +180,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Data\Biggy.cs" />
     <Compile Include="Data\TextDiffPage.cs" />
-    <Compile Include="DifferencesController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="Features\Differences\Approve.cs" />
-    <Compile Include="Features\Differences\Delete.cs" />
-    <Compile Include="Features\Differences\Index.cs" />
-    <Compile Include="Features\Differences\DifferencesController.cs" />
+    <Compile Include="Features\ImageDifferences\Approve.cs" />
+    <Compile Include="Features\ImageDifferences\Delete.cs" />
+    <Compile Include="Features\ImageDifferences\Index.cs" />
+    <Compile Include="Features\ImageDifferences\ImageDifferencesController.cs" />
     <Compile Include="Features\History\Index.cs" />
     <Compile Include="Data\KnownImage.cs" />
     <Compile Include="Features\History\Learn.cs" />
@@ -218,6 +215,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ImageController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImageDifferencesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Environment.cs">
@@ -283,7 +283,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Features\Differences\Index.cshtml" />
+    <Content Include="Features\ImageDifferences\Index.cshtml" />
     <Content Include="Features\Shared\_Layout.cshtml" />
     <Content Include="Features\Shared\_AsciiBanner.cshtml" />
     <Content Include="Features\Error\404.cshtml" />

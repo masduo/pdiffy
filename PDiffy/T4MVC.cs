@@ -27,10 +27,10 @@ using T4MVC;
 [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
 public static partial class MVC
 {
-    public static PDiffy.Features.Differences.DifferencesController Differences = new PDiffy.Features.Differences.T4MVC_DifferencesController();
     public static PDiffy.Features.Error.ErrorController Error = new PDiffy.Features.Error.T4MVC_ErrorController();
     public static PDiffy.Features.History.HistoryController History = new PDiffy.Features.History.T4MVC_HistoryController();
     public static PDiffy.Features.Image.ImageController Image = new PDiffy.Features.Image.T4MVC_ImageController();
+    public static PDiffy.Features.ImageDifferences.ImageDifferencesController ImageDifferences = new PDiffy.Features.ImageDifferences.T4MVC_ImageDifferencesController();
     public static PDiffy.Features.Setup.SetupController Setup = new PDiffy.Features.Setup.T4MVC_SetupController();
     public static PDiffy.Features.TextDifferences.TextDifferencesController TextDifferences = new PDiffy.Features.TextDifferences.T4MVC_TextDifferencesController();
     public static T4MVC.PageController Page = new T4MVC.PageController();
