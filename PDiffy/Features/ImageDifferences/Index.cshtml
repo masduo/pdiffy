@@ -25,17 +25,17 @@
 			<div class="images">
 				@if (page.HumanComparisonRequired)
 				{
-					<a href="@Url.Action("OriginalImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-						<img class="difference-image" src="@Url.Action("OriginalImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
+					<a href="@Url.Action("OriginalImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
+						<img class="difference-image" src="@Url.Action("OriginalImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
 					</a>
 					if (page.ComparisonExists)
 					{
-						<a href="@Url.Action("ComparisonImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-							<img class="difference-image" src="@Url.Action("ComparisonImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
+						<a href="@Url.Action("ComparisonImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
+							<img class="difference-image" src="@Url.Action("ComparisonImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
 						</a>
 					}
-					<a href="@Url.Action("DifferenceImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-						<img class="difference-image" src="@Url.Action("DifferenceImage", "Image", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
+					<a href="@Url.Action("DifferenceImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
+						<img class="difference-image" src="@Url.Action("DifferenceImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
 					</a>
 				}
 			</div>

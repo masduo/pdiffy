@@ -2,11 +2,10 @@
 using System.Threading.Tasks;
 using MediatR;
 using PDiffy.Data.Stores;
-using PDiffy.Features.Shared;
 using PDiffy.Infrastructure;
 using Quarks.ImageExtensions;
 
-namespace PDiffy.Features.Image
+namespace PDiffy.Features.ImageViewer
 {
 	public class DifferenceImage
 	{

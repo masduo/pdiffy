@@ -191,12 +191,12 @@
     <Compile Include="Data\KnownImage.cs" />
     <Compile Include="Features\History\Learn.cs" />
     <Compile Include="Features\History\HistoryController.cs" />
-    <Compile Include="Features\Image\DifferenceImage.cs" />
-    <Compile Include="Features\Image\ComparisonImage.cs" />
-    <Compile Include="Features\Image\ImageController.cs">
+    <Compile Include="Features\ImageViewer\DifferenceImage.cs" />
+    <Compile Include="Features\ImageViewer\ComparisonImage.cs" />
+    <Compile Include="Features\ImageViewer\ImageViewerController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Features\Image\OriginalImage.cs" />
+    <Compile Include="Features\ImageViewer\OriginalImage.cs" />
     <Compile Include="Features\Text\TextController.cs" />
     <Compile Include="Features\Text\Text.cs" />
     <Compile Include="Features\Page\Image.cs" />
@@ -214,10 +214,10 @@
     <Compile Include="HistoryController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageController.generated.cs">
+    <Compile Include="ImageDifferencesController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="ImageDifferencesController.generated.cs">
+    <Compile Include="ImageViewerController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Environment.cs">

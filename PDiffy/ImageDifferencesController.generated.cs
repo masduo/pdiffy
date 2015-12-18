@@ -6,8 +6,6 @@
 // Make sure the compiler doesn't complain about missing Xml comments and CLS compliance
 // 0108: suppress "Foo hides inherited member Foo. Use the new keyword if hiding was intended." when a controller and its abstract parent are both processed
 // 0114: suppress "Foo.BarController.Baz()' hides inherited member 'Qux.BarController.Baz()'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword." when an action (with an argument) overrides an action in a parent controller
-
-using PDiffy.Features.ImageDifferences;
 #pragma warning disable 1591, 3008, 3009, 0108, 0114
 #region T4MVC
 
@@ -157,10 +155,10 @@ namespace PDiffy.Features.ImageDifferences
         public T4MVC_ImageDifferencesController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Index.Query query);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.ImageDifferences.Index.Query query);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index(Index.Query query)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index(PDiffy.Features.ImageDifferences.Index.Query query)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "query", query);
@@ -169,10 +167,10 @@ namespace PDiffy.Features.ImageDifferences
         }
 
         [NonAction]
-        partial void ApproveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Approve.Command model);
+        partial void ApproveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.ImageDifferences.Approve.Command model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Approve(Approve.Command model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Approve(PDiffy.Features.ImageDifferences.Approve.Command model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Approve);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -181,10 +179,10 @@ namespace PDiffy.Features.ImageDifferences
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, Delete.Command model);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.ImageDifferences.Delete.Command model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Delete(Delete.Command model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Delete(PDiffy.Features.ImageDifferences.Delete.Command model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);

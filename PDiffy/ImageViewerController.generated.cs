@@ -23,12 +23,12 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace PDiffy.Features.Image
+namespace PDiffy.Features.ImageViewer
 {
-    public partial class ImageController
+    public partial class ImageViewerController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected ImageController(Dummy d) { }
+        protected ImageViewerController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -58,13 +58,13 @@ namespace PDiffy.Features.Image
 
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public ImageController Actions { get { return MVC.Image; } }
+        public ImageViewerController Actions { get { return MVC.ImageViewer; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Image";
+        public readonly string Name = "ImageViewer";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Image";
+        public const string NameConst = "ImageViewer";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -95,9 +95,9 @@ namespace PDiffy.Features.Image
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_ImageController : PDiffy.Features.Image.ImageController
+    public partial class T4MVC_ImageViewerController : PDiffy.Features.ImageViewer.ImageViewerController
     {
-        public T4MVC_ImageController() : base(Dummy.Instance) { }
+        public T4MVC_ImageViewerController() : base(Dummy.Instance) { }
 
     }
 }

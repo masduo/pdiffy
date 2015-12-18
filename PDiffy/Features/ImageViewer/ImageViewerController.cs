@@ -3,13 +3,13 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using MediatR;
 
-namespace PDiffy.Features.Image
+namespace PDiffy.Features.ImageViewer
 {
-	public partial class ImageController : Controller
+	public partial class ImageViewerController : Controller
 	{
 		readonly IMediator _mediator;
 
-		public ImageController(IMediator mediator)
+		public ImageViewerController(IMediator mediator)
 		{
 			_mediator = mediator;
 		}

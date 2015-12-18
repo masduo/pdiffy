@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Quarks.ImageExtensions;
 
-namespace PDiffy.Features.Image
+namespace PDiffy.Features.ImageViewer
 {
-	public class ComparisonImage 
+	public class OriginalImage 
 	{
 		public class Query : IAsyncRequest<Result>
 		{
@@ -23,7 +23,7 @@ namespace PDiffy.Features.Image
 			{
 				var page = Data.Biggy.PageList.Single(x => x.Name == message.Name);
 
-				return new Result { ImageData = page.ComparisonImage.ToByteArray() };
+				return new Result { ImageData = page.OriginalImage.ToByteArray() };
 			}
 		}
 	}
