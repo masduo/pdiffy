@@ -37,13 +37,12 @@ namespace PDiffy.Data.Stores
 
         public string[] Get(string name, string imageType)
         {
-            var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, SystemTime.Now.ToString("yyyyMMdd-HHmmss"), "png"));
-            var folder = Path.GetDirectoryName(fullPath);
+			var folder = Path.GetDirectoryName(Environment.ImageStorePath);
 
-            var files = folder == Environment.ImageStorePath
-                ? Directory.GetFiles(folder)
-                    .Where(path => Path.GetFileName(path).Name() == name && Path.GetFileName(path).Type() == imageType).ToArray()
-                : Directory.GetFiles(folder).Where(path => Path.GetFileName(path).Type() == imageType).ToArray();
+			var files = Directory.GetFiles(folder)
+				.Where(path =>
+					Path.GetFileName(path).Name() == name &&
+					Path.GetFileName(path).Type() == imageType).ToArray();
 
             return files;
         }
