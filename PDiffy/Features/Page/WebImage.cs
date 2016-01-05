@@ -28,10 +28,10 @@ namespace PDiffy.Features.Page
 		{
 			protected override async Task HandleCore(Command message)
 			{
-				var page = Data.Biggy.PageList.SingleOrDefault(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.SingleOrDefault(x => x.Name == message.Name);
 
 				if (page == null)
-					Data.Biggy.PageList.Add(new Data.ImageResource { Name = message.Name, OriginalImageUrl = message.Url });
+					Data.Biggy.ImageComparisons.Add(new Data.ImageComparison { Name = message.Name, OriginalImageUrl = message.Url });
 				else if (!page.HumanComparisonRequired)
 				{
 					page.ComparisonImageUrl = message.Url;
@@ -49,7 +49,7 @@ namespace PDiffy.Features.Page
 
 						page.LastComparisonDate = SystemTime.Now;
 					});
-					Data.Biggy.PageList.Update(page);
+					Data.Biggy.ImageComparisons.Update(page);
 				}
 			}
 		}

@@ -44,7 +44,7 @@ namespace PDiffy.Features.History
 
 			public async Task<Result> Handle(Query message)
 			{
-				var page = Data.Biggy.PageList.Single(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name);
 
 				var result = new Result
 				{

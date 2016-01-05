@@ -29,7 +29,7 @@ namespace PDiffy.Features.TextDifferences
 		{
 			public async Task<IList<Model>> Handle(Query message)
 			{
-				var pages = Data.Biggy.TextDiffPageList.Select(page => new Model
+				var pages = Data.Biggy.TextComparisons.Select(page => new Model
 				{
 					Name = page.Name,
 					LastComparisonDate = page.LastComparisonDate,

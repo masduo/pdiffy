@@ -25,7 +25,7 @@ namespace PDiffy.Features.ImageDifferences
 		{
 			protected override async Task HandleCore(Command message)
 			{
-				var page = Data.Biggy.PageList.Single(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name);
 
 				page.OriginalImageUrl = page.ComparisonImageUrl;
 				page.OriginalImagePath = page.ComparisonImagePath;
@@ -35,7 +35,7 @@ namespace PDiffy.Features.ImageDifferences
 				page.HumanComparisonRequired = false;
 				page.LastComparisonDate = SystemTime.Now;
 
-				Data.Biggy.PageList.Update(page);
+				Data.Biggy.ImageComparisons.Update(page);
 			}
 		}
 	}

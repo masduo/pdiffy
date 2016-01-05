@@ -38,12 +38,12 @@ namespace PDiffy.Features.Page
 
 			protected override async Task HandleCore(Command message)
 			{
-				var page = Data.Biggy.PageList.SingleOrDefault(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.SingleOrDefault(x => x.Name == message.Name);
 
 				if (page == null)
 				{
-					Data.Biggy.PageList.Add(
-						new Data.ImageResource
+					Data.Biggy.ImageComparisons.Add(
+						new Data.ImageComparison
 						{
 							Name = message.Name,
 							OriginalImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.OriginalId)
@@ -67,7 +67,7 @@ namespace PDiffy.Features.Page
 						page.LastComparisonDate = SystemTime.Now;
 					});
 
-					Data.Biggy.PageList.Update(page);
+					Data.Biggy.ImageComparisons.Update(page);
 				}
 			}
 		}

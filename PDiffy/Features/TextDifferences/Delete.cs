@@ -33,7 +33,7 @@ namespace PDiffy.Features.TextDifferences
 
 			protected override async Task HandleCore(Command message)
 			{
-				//Data.Biggy.PageList.Remove(Data.Biggy.PageList.Single(x => x.Name == message.Name));
+				//Data.Biggy.ImageComparisons.Remove(Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name));
 				//_imageStore.Delete(message.Name, Environment.AllImageTypes);
 			}
 		}

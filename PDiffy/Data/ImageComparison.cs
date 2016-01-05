@@ -9,7 +9,7 @@ using Quarks;
 
 namespace PDiffy.Data
 {
-    public class ImageResource
+    public class ImageComparison
     {
         [Key]
         public string Name { get; set; }

@@ -25,7 +25,7 @@ namespace PDiffy.Features.ImageDifferences
 		{
 			public async Task<IList<Model>> Handle(Query message)
 			{
-				var pages = Data.Biggy.PageList.Select(page => new Model
+				var pages = Data.Biggy.ImageComparisons.Select(page => new Model
 				{
 					Name = page.Name,
 					LastComparisonDate = page.LastComparisonDate,

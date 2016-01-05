@@ -29,12 +29,12 @@ namespace PDiffy.Text
 		{
 			protected override async Task HandleCore(Command message)
 			{
-				var textDiffPage = Data.Biggy.TextDiffPageList.SingleOrDefault(x => x.Name == message.Name);
+				var textDiffPage = Data.Biggy.TextComparisons.SingleOrDefault(x => x.Name == message.Name);
 
 				if (textDiffPage == null)
 				{
-					Data.Biggy.TextDiffPageList.Add(
-						new Data.TextDiffPage
+					Data.Biggy.TextComparisons.Add(
+						new Data.TextComparison
 						{
 							Name = message.Name,
 							OriginalText = message.Text
@@ -60,7 +60,7 @@ namespace PDiffy.Text
 						textDiffPage.LastComparisonDate = SystemTime.Now;
 					});
 
-					Data.Biggy.TextDiffPageList.Update(textDiffPage);
+					Data.Biggy.TextComparisons.Update(textDiffPage);
 				}
 			}
 		}

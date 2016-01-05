@@ -179,7 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Data\Biggy.cs" />
-    <Compile Include="Data\TextDiffPage.cs" />
+    <Compile Include="Data\TextComparison.cs" />
     <Compile Include="ErrorController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -200,7 +200,7 @@
     <Compile Include="Features\Text\TextController.cs" />
     <Compile Include="Features\Text\Text.cs" />
     <Compile Include="Features\Page\Image.cs" />
-    <Compile Include="Data\ImageResource.cs" />
+    <Compile Include="Data\ImageComparison.cs" />
     <Compile Include="Features\Error\ErrorController.cs" />
     <Compile Include="Features\Page\PageController.cs" />
     <Compile Include="Features\Page\WebImage.cs" />

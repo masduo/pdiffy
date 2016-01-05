@@ -30,12 +30,12 @@ namespace PDiffy.Features.ImageViewer
 
 			public async Task<Result> Handle(Query message)
 			{
-				var page = Data.Biggy.PageList.Single(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name);
 
 				if (string.IsNullOrWhiteSpace(page.DifferenceImagePath))
 				{
 					page.DifferenceImagePath = _imageStore.Save(page.DifferenceImage, page.Name + "." + Environment.DifferenceId);
-					Data.Biggy.PageList.Update(page);
+					Data.Biggy.ImageComparisons.Update(page);
 				}
 
 				return new Result { ImageData = page.DifferenceImage.ToByteArray()};

@@ -4,7 +4,7 @@ using Quarks;
 
 namespace PDiffy.Data
 {
-	public class TextDiffPage
+	public class TextComparison
 	{
 		private string _originalText = string.Empty;
 		private string _comparisonText = string.Empty;
