@@ -49,7 +49,7 @@ namespace PDiffy.Features.Page
 							OriginalImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.OriginalId)
 						});
 				}
-				else if (!page.HumanComparisonRequired)
+				else if (page.HumanComparisonRequired == false)
 				{
 					page.ComparisonImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.ComparisonId);
 					await Task.Run(() =>

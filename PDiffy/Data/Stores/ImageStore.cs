@@ -37,8 +37,7 @@ namespace PDiffy.Data.Stores
 
         public string[] Get(string name, string imageType)
         {
-            //adding milliseconds to avoid filename conflict
-            var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, SystemTime.Now.ToString("yyyyMMdd-HHmmss.ffff"), "png"));
+            var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, SystemTime.Now.ToString("yyyyMMdd-HHmmss"), "png"));
             var folder = Path.GetDirectoryName(fullPath);
 
             var files = folder == Environment.ImageStorePath
