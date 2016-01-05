@@ -3,9 +3,10 @@ using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
 using Quarks;
 
-namespace PDiffy.Features.Page
+namespace PDiffy.Features.ImageComparisons
 {
 	public class WebImage
 	{

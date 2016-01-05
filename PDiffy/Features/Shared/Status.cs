@@ -1,4 +1,4 @@
-namespace PDiffy.Features.Page
+namespace PDiffy.Features.Shared
 {
 	public class Status
 	{

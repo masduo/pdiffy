@@ -4,9 +4,10 @@ using System.Web;
 using FluentValidation;
 using MediatR;
 using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
 using Quarks;
 
-namespace PDiffy.Text
+namespace PDiffy.Features.TextComparisons
 {
 	public class Text
 	{

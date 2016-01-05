@@ -26,7 +26,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace PDiffy.Features.Shared {
+namespace PDiffy.Features.Shared.Libraries {
 
   internal static class CompatibilityExtensions {
     // JScript splice function

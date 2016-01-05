@@ -29,7 +29,6 @@ namespace PDiffy.Data
 			set { _comparisonText = value ?? string.Empty; }
 		}
 
-		//public IList<Diff> DifferenceText { get; set; }
 		public string DifferenceText
 		{
 			get { return _differenceText; }

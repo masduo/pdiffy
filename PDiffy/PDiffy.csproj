@@ -197,16 +197,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Features\ImageViewer\OriginalImage.cs" />
-    <Compile Include="Features\Text\TextController.cs" />
-    <Compile Include="Features\Text\Text.cs" />
-    <Compile Include="Features\Page\Image.cs" />
+    <Compile Include="Features\TextComparisons\TextComparisonsController.cs" />
+    <Compile Include="Features\TextComparisons\Text.cs" />
+    <Compile Include="Features\ImageComparisons\Image.cs" />
     <Compile Include="Data\ImageComparison.cs" />
     <Compile Include="Features\Error\ErrorController.cs" />
-    <Compile Include="Features\Page\PageController.cs" />
-    <Compile Include="Features\Page\WebImage.cs" />
+    <Compile Include="Features\ImageComparisons\ImageComparisonsController.cs" />
+    <Compile Include="Features\ImageComparisons\WebImage.cs" />
     <Compile Include="Features\Setup\SetupController.cs" />
-    <Compile Include="Features\Shared\DiffMatchPatch.cs" />
-    <Compile Include="Features\Shared\ImageDiffTool.cs" />
+    <Compile Include="Features\Shared\Libraries\DiffMatchPatch.cs" />
+    <Compile Include="Features\Shared\Libraries\ImageDiffTool.cs" />
     <Compile Include="Features\TextDifferences\Approve.cs" />
     <Compile Include="Features\TextDifferences\Delete.cs" />
     <Compile Include="Features\TextDifferences\TextDifferencesController.cs" />
@@ -225,7 +225,7 @@
     </Compile>
     <Compile Include="Features\History\HistoricalImage.cs" />
     <Compile Include="Data\Stores\ImageStore.cs" />
-    <Compile Include="Features\Page\Status.cs" />
+    <Compile Include="Features\Shared\Status.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

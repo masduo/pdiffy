@@ -5,10 +5,11 @@ using FluentValidation;
 using MediatR;
 using PDiffy.Data.Stores;
 using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
+using PDiffy.Infrastructure;
 using Quarks;
-using Environment = PDiffy.Infrastructure.Environment;
 
-namespace PDiffy.Features.Page
+namespace PDiffy.Features.ImageComparisons
 {
 	public class Image
 	{

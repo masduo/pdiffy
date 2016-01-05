@@ -3,6 +3,7 @@ using System.Drawing;
 using Machine.Fakes;
 using Machine.Specifications;
 using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
 
 namespace PDiffy.Tests
 {

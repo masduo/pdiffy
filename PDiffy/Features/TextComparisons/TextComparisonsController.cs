@@ -4,21 +4,22 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
 using MediatR;
-using PDiffy.Features.Page;
+using PDiffy.Features.ImageComparisons;
+using PDiffy.Features.Shared;
 
-namespace PDiffy.Text
+namespace PDiffy.Features.TextComparisons
 {
-	public class TextController : ApiController
+	public class TextComparisonsController : ApiController
 	{
 		readonly IMediator _mediator;
 
-		public TextController(IMediator mediator)
+		public TextComparisonsController(IMediator mediator)
 		{
 			_mediator = mediator;
 		}
 
 		[HttpPost]
-		public async Task<JsonResult<Status>> Update(string name)
+		public async Task<JsonResult<Status>> PostTextComparison(string name)
 		{
 			if (string.IsNullOrEmpty(name))
 				return Json(Status.GetWrongInput(name));

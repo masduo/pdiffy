@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using Newtonsoft.Json;
 using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
 using Quarks;
 
 namespace PDiffy.Data
