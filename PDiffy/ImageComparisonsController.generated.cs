@@ -25,7 +25,7 @@ using System.Web.Routing;
 using T4MVC;
 namespace T4MVC
 {
-    public class TextController
+    public class ImageComparisonsController
     {
 
         static readonly ViewsClass s_views = new ViewsClass();

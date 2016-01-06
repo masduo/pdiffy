@@ -33,9 +33,9 @@ public static partial class MVC
     public static PDiffy.Features.ImageViewer.ImageViewerController ImageViewer = new PDiffy.Features.ImageViewer.T4MVC_ImageViewerController();
     public static PDiffy.Features.Setup.SetupController Setup = new PDiffy.Features.Setup.T4MVC_SetupController();
     public static PDiffy.Features.TextDifferences.TextDifferencesController TextDifferences = new PDiffy.Features.TextDifferences.T4MVC_TextDifferencesController();
-    public static T4MVC.PageController Page = new T4MVC.PageController();
+    public static T4MVC.ImageComparisonsController ImageComparisons = new T4MVC.ImageComparisonsController();
     public static T4MVC.SharedController Shared = new T4MVC.SharedController();
-    public static T4MVC.TextController Text = new T4MVC.TextController();
+    public static T4MVC.TextComparisonsController TextComparisons = new T4MVC.TextComparisonsController();
 }
 
 namespace T4MVC

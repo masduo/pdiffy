@@ -51,6 +51,17 @@ namespace T4MVC
             public readonly string Buttons = "~/Features/Shared/Buttons.scss";
             public readonly string Modals = "~/Features/Shared/Modals.scss";
             public readonly string Shared = "~/Features/Shared/Shared.scss";
+            static readonly _LibrariesClass s_Libraries = new _LibrariesClass();
+            public _LibrariesClass Libraries { get { return s_Libraries; } }
+            [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+            public partial class _LibrariesClass
+            {
+                static readonly _ViewNamesClass s_ViewNames = new _ViewNamesClass();
+                public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
+                public class _ViewNamesClass
+                {
+                }
+            }
         }
     }
 
