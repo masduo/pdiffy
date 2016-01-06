@@ -37,9 +37,7 @@ namespace PDiffy.Data.Stores
 
         public string[] Get(string name, string imageType)
         {
-			var folder = Path.GetDirectoryName(Environment.ImageStorePath);
-
-			var files = Directory.GetFiles(folder)
+			var files = Directory.GetFiles(Environment.ImageStorePath)
 				.Where(path =>
 					Path.GetFileName(path).Name() == name &&
 					Path.GetFileName(path).Type() == imageType).ToArray();

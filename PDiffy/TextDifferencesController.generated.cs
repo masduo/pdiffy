@@ -77,6 +77,13 @@ namespace PDiffy.Features.TextDifferences
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> DeleteAll()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteAll);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public TextDifferencesController Actions { get { return MVC.TextDifferences; } }
@@ -96,6 +103,7 @@ namespace PDiffy.Features.TextDifferences
             public readonly string Index = "Index";
             public readonly string Approve = "Approve";
             public readonly string Delete = "Delete";
+            public readonly string DeleteAll = "DeleteAll";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -104,6 +112,7 @@ namespace PDiffy.Features.TextDifferences
             public const string Index = "Index";
             public const string Approve = "Approve";
             public const string Delete = "Delete";
+            public const string DeleteAll = "DeleteAll";
         }
 
 
@@ -130,6 +139,14 @@ namespace PDiffy.Features.TextDifferences
         public class ActionParamsClass_Delete
         {
             public readonly string model = "model";
+        }
+        static readonly ActionParamsClass_DeleteAll s_params_DeleteAll = new ActionParamsClass_DeleteAll();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteAll DeleteAllParams { get { return s_params_DeleteAll; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteAll
+        {
+            public readonly string message = "message";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -187,6 +204,18 @@ namespace PDiffy.Features.TextDifferences
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             DeleteOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        [NonAction]
+        partial void DeleteAllOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.TextDifferences.DeleteAll.Command message);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> DeleteAll(PDiffy.Features.TextDifferences.DeleteAll.Command message)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteAll);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
+            DeleteAllOverride(callInfo, message);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 

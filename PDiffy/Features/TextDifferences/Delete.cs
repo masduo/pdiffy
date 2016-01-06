@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using PDiffy.Data.Stores;
-using PDiffy.Infrastructure;
 
 namespace PDiffy.Features.TextDifferences
 {
@@ -24,17 +22,9 @@ namespace PDiffy.Features.TextDifferences
 
 		public class CommandHandler : AsyncRequestHandler<Command>
 		{
-			readonly IImageStore _imageStore;
-
-			public CommandHandler(IImageStore imageStore)
-			{
-				_imageStore = imageStore;
-			}
-
 			protected override async Task HandleCore(Command message)
 			{
-				//Data.Biggy.ImageComparisons.Remove(Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name));
-				//_imageStore.Delete(message.Name, Environment.AllImageTypes);
+				Data.Biggy.TextComparisons.Remove(Data.Biggy.TextComparisons.Single(x => x.Name == message.Name));
 			}
 		}
 	}

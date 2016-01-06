@@ -13,7 +13,7 @@ namespace PDiffy.Data
 		///</remarks>
 		public static string Name(this string fileName)
 		{
-			return fileName.Split(Environment.AllImageTypes, StringSplitOptions.None)[0];
+			return fileName.Split(Environment.AllImageTypes, StringSplitOptions.None)[0].TrimEnd('.');
 		}
 
 		public static string Type(this string fileName)

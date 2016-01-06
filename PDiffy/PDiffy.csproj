@@ -208,10 +208,14 @@
     <Compile Include="Features\Shared\Libraries\DiffMatchPatch.cs" />
     <Compile Include="Features\Shared\Libraries\ImageDiffTool.cs" />
     <Compile Include="Features\TextDifferences\Approve.cs" />
+    <Compile Include="Features\TextDifferences\DeleteAll.cs" />
     <Compile Include="Features\TextDifferences\Delete.cs" />
     <Compile Include="Features\TextDifferences\TextDifferencesController.cs" />
     <Compile Include="Features\TextDifferences\Index.cs" />
     <Compile Include="HistoryController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ImageComparisonsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="ImageDifferencesController.generated.cs">
@@ -239,9 +243,6 @@
     <Compile Include="Infrastructure\WebApiResolver\WindsorDependencyResolver.cs" />
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
     <Compile Include="Infrastructure\Installers\ToolInstallers.cs" />
-    <Compile Include="PageController.generated.cs">
-      <DependentUpon>T4MVC.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quarks\IEnumerableExtensions\ForEach.cs" />
     <Compile Include="Quarks\ImageExtensions\ToByteArray.cs" />
@@ -258,7 +259,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
-    <Compile Include="TextController.generated.cs">
+    <Compile Include="TextComparisonsController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="TextDifferencesController.generated.cs">

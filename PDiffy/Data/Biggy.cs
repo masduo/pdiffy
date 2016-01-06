@@ -15,12 +15,12 @@ namespace PDiffy.Data
 
 		public static BiggyList<ImageComparison> ImageComparisons
 		{
-			get { return _imageComparisons ?? (_imageComparisons = new BiggyList<ImageComparison>(new JsonStore<ImageComparison>(Environment.DataStorePath, "Biggy", "Pages"))); }
+			get { return _imageComparisons ?? (_imageComparisons = new BiggyList<ImageComparison>(new JsonStore<ImageComparison>(Environment.DataStorePath, "Biggy", "ImageComparisons"))); }
 		}
 
 		public static BiggyList<TextComparison> TextComparisons
 		{
-			get { return _textComparisons ?? (_textComparisons = new BiggyList<TextComparison>(new JsonStore<TextComparison>(Environment.DataStorePath, "Biggy", "TextDiffPages"))); }
+			get { return _textComparisons ?? (_textComparisons = new BiggyList<TextComparison>(new JsonStore<TextComparison>(Environment.DataStorePath, "Biggy", "TextComparisons"))); }
 		}
 
 		public static BiggyList<KnownImage> KnownImageList

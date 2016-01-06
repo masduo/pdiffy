@@ -33,5 +33,13 @@ namespace PDiffy.Features.TextDifferences
 
 			return RedirectToAction(MVC.TextDifferences.Index());
 	    }
+
+		public virtual async Task<ActionResult> DeleteAll(DeleteAll.Command message)
+		{
+			if (message.DeleteAll)
+				await _mediator.SendAsync(message);
+
+			return RedirectToAction(MVC.TextDifferences.Index());
+		}
     }
 }

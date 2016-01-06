@@ -25,17 +25,15 @@ namespace PDiffy.Features.TextDifferences
 		{
 			protected override async Task HandleCore(Command message)
 			{
-				//var page = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name);
+				var textComparison = Data.Biggy.TextComparisons.Single(x => x.Name == message.Name);
 
-				//page.OriginalImageUrl = page.ComparisonImageUrl;
-				//page.OriginalImagePath = page.ComparisonImagePath;
-				//page.ComparisonImageUrl = null;
-				//page.ComparisonImagePath = null;
-				//page.DifferenceImagePath = null;
-				//page.HumanComparisonRequired = false;
-				//page.LastComparisonDate = SystemTime.Now;
+				textComparison.OriginalText = textComparison.ComparisonText;
+				textComparison.ComparisonText =string.Empty;
+				textComparison.DifferenceText = string.Empty;
+				textComparison.HumanComparisonRequired = false;
+				textComparison.LastComparisonDate = SystemTime.Now;
 
-				//Data.Biggy.ImageComparisons.Update(page);
+				Data.Biggy.TextComparisons.Update(textComparison);
 			}
 		}
 	}
