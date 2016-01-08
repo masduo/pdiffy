@@ -3,8 +3,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Results;
+using System.Web.Script.Serialization;
 using MediatR;
-using PDiffy.Features.ImageComparisons;
 using PDiffy.Features.Shared;
 
 namespace PDiffy.Features.TextComparisons
@@ -19,27 +19,21 @@ namespace PDiffy.Features.TextComparisons
 		}
 
 		[HttpPost]
-		public async Task<JsonResult<Status>> PostTextComparison(string name)
+		public async Task<IHttpActionResult> PostTextComparison()
 		{
-			if (string.IsNullOrEmpty(name))
-				return Json(Status.GetWrongInput(name));
-
-			string text;
+			string requestBody;
 			using (var requestStream = await Request.Content.ReadAsStreamAsync())
 			using (var streamReader = new StreamReader(requestStream, Encoding.Unicode, true))
-				text = streamReader.ReadToEnd();
+				requestBody = streamReader.ReadToEnd();
 
-			await _mediator.SendAsync(new Text.Command { Name = name, Text = text });
+			var body = new JavaScriptSerializer().Deserialize<Body>(requestBody);
 
-			return Json(Status.Ok);
+			if (string.IsNullOrEmpty(body.name))
+				return BadRequest();
+
+			await _mediator.SendAsync(new Text.Command { Name = body.name, Text = Encoding.Unicode.GetString(body.content) });
+
+			return Ok();
 		}
-
-		//[HttpGet]
-		//public async Task<JsonResult<Status>> Update(string name, string imageUrl)
-		//{
-		//	await _mediator.SendAsync(new WebImage.Command { Name = name, Url = imageUrl });
-
-		//	return Json(Status.Ok);
-		//}
 	}
 }
