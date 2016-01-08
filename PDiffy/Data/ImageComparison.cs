@@ -55,9 +55,10 @@ namespace PDiffy.Data
             get
             {
                 return string.IsNullOrWhiteSpace(DifferenceImagePath)
-                    ? new ImageDiffTool().CreateDifferenceImage(OriginalImage, ComparisonImage)
+                    ? new ImageDiffTool().CreateDifferenceImage(OriginalImage, ComparisonImage) //*
                     : new Bitmap(DifferenceImagePath);
             }
+            //* issue created on github to make the images same size before passing into create diff image
         }
 
         static Bitmap capture(string imageUrl)

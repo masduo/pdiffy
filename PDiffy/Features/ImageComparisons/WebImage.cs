@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
@@ -38,7 +39,12 @@ namespace PDiffy.Features.ImageComparisons
 					page.ComparisonImageUrl = message.Url;
 					await Task.Run(() =>
 					{
-						var equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						var equal = false;
+						try
+						{
+							equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						}
+						catch { /*assume inequality on comparison exceptions*/ }
 
 						if (!equal)
 							page.HumanComparisonRequired = true;

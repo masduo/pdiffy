@@ -56,7 +56,12 @@ namespace PDiffy.Features.ImageComparisons
 					page.ComparisonImagePath = _imageStore.Save(message.Image, message.Name, Environment.ComparisonId);
 					await Task.Run(() =>
 					{
-						var equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						var equal = false;
+						try
+						{
+							equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						}
+						catch { /*assume inequality on comparison exceptions*/ }
 
 						if (!equal)
 							page.HumanComparisonRequired = true;
