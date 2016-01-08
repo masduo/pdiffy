@@ -38,4 +38,10 @@ namespace PDiffy.Features.Shared
 			};
 		}
 	}
+
+	public class Body
+	{
+		public string name { get; set; }
+		public byte[] content { get; set; }
+	}
 }

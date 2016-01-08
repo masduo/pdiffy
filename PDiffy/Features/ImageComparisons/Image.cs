@@ -1,3 +1,4 @@
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,8 +7,8 @@ using MediatR;
 using PDiffy.Data.Stores;
 using PDiffy.Features.Shared;
 using PDiffy.Features.Shared.Libraries;
-using PDiffy.Infrastructure;
 using Quarks;
+using Environment = PDiffy.Infrastructure.Environment;
 
 namespace PDiffy.Features.ImageComparisons
 {
@@ -47,12 +48,12 @@ namespace PDiffy.Features.ImageComparisons
 						new Data.ImageComparison
 						{
 							Name = message.Name,
-							OriginalImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.OriginalId)
+							OriginalImagePath = _imageStore.Save(message.Image, message.Name, Environment.OriginalId)
 						});
 				}
 				else if (page.HumanComparisonRequired == false)
 				{
-					page.ComparisonImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.ComparisonId);
+					page.ComparisonImagePath = _imageStore.Save(message.Image, message.Name, Environment.ComparisonId);
 					await Task.Run(() =>
 					{
 						var equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);

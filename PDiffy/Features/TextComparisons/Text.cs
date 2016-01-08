@@ -50,7 +50,7 @@ namespace PDiffy.Features.TextComparisons
 						//TODO: write a wrapper around the diff_match_patch, then inject wrapper here
 						var differences = new  diff_match_patch().diff_main(textDiffPage.OriginalText, textDiffPage.ComparisonText);
 
-						if (differences.Any())
+						if (differences.Any(d => d.operation != Operation.Equal))
 						{
 							textDiffPage.HumanComparisonRequired = true;
 							textDiffPage.DifferenceText = HttpUtility.HtmlEncode(new diff_match_patch().diff_prettyHtml(differences));

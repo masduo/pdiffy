@@ -34,7 +34,7 @@ namespace PDiffy.Features.ImageViewer
 
 				if (string.IsNullOrWhiteSpace(page.DifferenceImagePath))
 				{
-					page.DifferenceImagePath = _imageStore.Save(page.DifferenceImage, page.Name + "." + Environment.DifferenceId);
+					page.DifferenceImagePath = _imageStore.Save(page.DifferenceImage, page.Name, Environment.DifferenceId);
 					Data.Biggy.ImageComparisons.Update(page);
 				}
 
