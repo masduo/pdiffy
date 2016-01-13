@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using System.Web.UI;
 using MediatR;
 
 namespace PDiffy.Features.ImageViewer
@@ -15,23 +16,23 @@ namespace PDiffy.Features.ImageViewer
 		}
 
 		[OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
-		public async Task<FileContentResult> DifferenceImage(string name, DateTime? lastComparisonDate)
+		public async Task<FileContentResult> DifferenceImage(string name, string page, string site)
 		{
-			var model = await _mediator.SendAsync(new DifferenceImage.Query { Name = name });
+			var model = await _mediator.SendAsync(new DifferenceImage.Query { Name = name, Page = page, Site = site });
 			return File(model.ImageData, "image/png");
 		}
 
 		[OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
-		public async Task<FileContentResult> ComparisonImage(string name, DateTime? lastComparisonDate)
+		public async Task<FileContentResult> ComparisonImage(string name, string page, string site)
 		{
-			var model = await _mediator.SendAsync(new ComparisonImage.Query { Name = name });
+			var model = await _mediator.SendAsync(new ComparisonImage.Query { Name = name, Page = page, Site = site });
 			return File(model.ImageData, "image/png");
 		}
 
 		[OutputCache(Duration = 1800, VaryByParam = "name; lastComparisonDate")]
-		public async Task<FileContentResult> OriginalImage(string name, DateTime? lastComparisonDate)
+		public async Task<FileContentResult> OriginalImage(string name, string page, string site)
 		{
-			var model = await _mediator.SendAsync(new OriginalImage.Query { Name = name });
+			var model = await _mediator.SendAsync(new OriginalImage.Query { Name = name, Page = page, Site = site });
 			return File(model.ImageData, "image/png");
 		}
 	}

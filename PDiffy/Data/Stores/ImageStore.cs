@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using Quarks;
 using Quarks.IEnumerableExtensions;
@@ -16,8 +15,7 @@ namespace PDiffy.Data.Stores
 			using (image)
 			{
 				name = ConvertStringToHex(name);
-				//adding milliseconds to avoid filename conflict
-				var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, type, SystemTime.Now.ToString("yyyyMMdd-HHmmss.ffff"), "png"));
+				var fullPath = Path.Combine(Environment.ImageStorePath, string.Join(".", name, type, SystemTime.Now.ToString(PDiffyFileProperties.DateFormat), "png"));
 				var folder = Path.GetDirectoryName(fullPath);
 
 				if (folder != null && !Directory.Exists(folder))

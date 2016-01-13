@@ -1,4 +1,5 @@
-﻿@model IList<PDiffy.Features.TextDifferences.Index.Model>
+﻿@using PDiffy.Features.TextComparisons
+@model IList<PDiffy.Features.TextDifferences.Index.Model>
 
 @{
 	Layout = "~/Features/Shared/_Layout.cshtml";
@@ -11,6 +12,8 @@
 	@foreach (var textComparison in Model.Reverse())
 	{
 		<div class="page-object align-center text-align-center">
+			@{ var values = new { name = textComparison.Name, page = textComparison.Page, site = textComparison.Site }; }
+
 			<h3>@textComparison.Name</h3>
 
 			@if (textComparison.HumanComparisonRequired)
@@ -39,10 +42,10 @@
 			<div class="controls">
 				@if (textComparison.HumanComparisonRequired)
 				{
-					@Html.ActionLink("Approve Difference", "Approve", "TextDifferences", new { name = textComparison.Name }, new { @class = "btn" })
+					@Html.ActionLink("Approve Difference", "Approve", "TextDifferences", values, new { @class = "btn" })
 				}
 
-				<a class="btn align-center" href="@Url.Action("Index", "History", new { name = textComparison.Name })">History</a>
+				<a class="btn align-center" href="@Url.Action("Index", "History", values)">History</a>
 
 				<a class="btn align-center" href="#@textComparison.Name">Delete</a>
 			</div>
@@ -53,7 +56,7 @@
 					<h3>Delete @textComparison.Name</h3>
 					<p>Warning! Read this!</p>
 					<p>This will delete this comparison and the history for it.</p>
-					@Html.ActionLink("#$@&! the police", "Delete", new { name = textComparison.Name }, new { @class = "btn danger" })
+					@Html.ActionLink("#$@&! the police", "Delete", values, new { @class = "btn danger" })
 				</div>
 			</div>
 		</div>

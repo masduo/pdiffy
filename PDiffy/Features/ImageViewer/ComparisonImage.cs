@@ -10,6 +10,8 @@ namespace PDiffy.Features.ImageViewer
 		public class Query : IAsyncRequest<Result>
 		{
 			public string Name { get; set; }
+			public string Page { get; set; }
+			public string Site { get; set; }
 		}
 
 		public class Result
@@ -21,9 +23,9 @@ namespace PDiffy.Features.ImageViewer
 		{
 			public async Task<Result> Handle(Query message)
 			{
-				var page = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name);
+				var comparison = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name && x.Page == message.Page && x.Site == message.Site);
 
-				return new Result { ImageData = page.ComparisonImage.ToByteArray() };
+				return new Result { ImageData = comparison.ComparisonImage.ToByteArray() };
 			}
 		}
 	}

@@ -13,6 +13,8 @@ namespace PDiffy.Features.TextDifferences
 		public class Model
 		{
 			public string Name { get; set; }
+			public string Page { get; set; }
+			public string Site { get; set; }
 
 			public DateTime? LastComparisonDate { get; set; }
 			public bool HumanComparisonRequired { get; set; }
@@ -29,20 +31,23 @@ namespace PDiffy.Features.TextDifferences
 		{
 			public async Task<IList<Model>> Handle(Query message)
 			{
-				var pages = Data.Biggy.TextComparisons.Select(page => new Model
+				var comparisons = Data.Biggy.TextComparisons.Select(comparison => new Model
 				{
-					Name = page.Name,
-					LastComparisonDate = page.LastComparisonDate,
-					ComparisonStillValid = page.ComparisonStillValid,
-					HumanComparisonRequired = page.HumanComparisonRequired,
-					ComparisonExists = string.IsNullOrWhiteSpace(page.DifferenceText) == false,
+					Name = comparison.Name,
+					Page = comparison.Page,
+					Site = comparison.Site,
 
-					OriginalText = page.OriginalText,
-					ComparisonText = page.ComparisonText,
-					DifferenceText = page.DifferenceText,
+					LastComparisonDate = comparison.LastComparisonDate,
+					ComparisonStillValid = comparison.ComparisonStillValid,
+					HumanComparisonRequired = comparison.HumanComparisonRequired,
+					ComparisonExists = string.IsNullOrWhiteSpace(comparison.DifferenceText) == false,
+
+					OriginalText = comparison.OriginalText,
+					ComparisonText = comparison.ComparisonText,
+					DifferenceText = comparison.DifferenceText,
 				}).ToList();
 
-				return pages;
+				return comparisons;
 			}
 		}
 	}

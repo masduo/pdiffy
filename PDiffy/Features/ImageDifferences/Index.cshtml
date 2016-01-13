@@ -10,54 +10,58 @@
 
 <div class="page-container align-center text-align-center">
 	<h2 class="page-title align-center">Differences</h2>
-	@foreach (var page in Model.Reverse())
+	@foreach (var comparison in Model.Reverse())
 	{
 		<div class="page-object align-center text-align-center">
-			<h3>@page.Name</h3>
+			@{var values = new { name = comparison.Name, page = comparison.Page , site = comparison.Site};}
 
-			@if (page.HumanComparisonRequired)
-			{ <p class="comparison">@page.LastComparisonDate</p> }
-			else if (page.ComparisonStillValid)
-			{ <p class="comparison valid">@page.LastComparisonDate</p> }
+			<h3>@comparison.Name</h3>
+
+			@if (comparison.HumanComparisonRequired)
+			{ <p class="comparison">@comparison.LastComparisonDate</p> }
+			else if (comparison.ComparisonStillValid)
+			{ <p class="comparison valid">@comparison.LastComparisonDate</p> }
 			else
-			{ <p class="comparison invalid">@page.LastComparisonDate</p>}
+			{ <p class="comparison invalid">@comparison.LastComparisonDate</p>}
 
 			<div class="images">
-				@if (page.HumanComparisonRequired)
+				<a href="@Url.Action("OriginalImage", "ImageViewer", values)" target="_blank">
+					<img class="difference-image" src="@Url.Action("OriginalImage", "ImageViewer", values)" alt="differenceHistoricalImage" />
+				</a>
+
+				@if (comparison.HumanComparisonRequired)
 				{
-					<a href="@Url.Action("OriginalImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-						<img class="difference-image" src="@Url.Action("OriginalImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
-					</a>
-					if (page.ComparisonExists)
+					if (comparison.ComparisonExists)
 					{
-						<a href="@Url.Action("ComparisonImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-							<img class="difference-image" src="@Url.Action("ComparisonImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
-						</a>
+					<a href="@Url.Action("ComparisonImage", "ImageViewer", values)" target="_blank">
+						<img class="difference-image" src="@Url.Action("ComparisonImage", "ImageViewer", values)" alt="differenceHistoricalImage" />
+					</a>
 					}
-					<a href="@Url.Action("DifferenceImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" target="_blank">
-						<img class="difference-image" src="@Url.Action("DifferenceImage", "ImageViewer", new { name = page.Name, lastComparisonDate = page.LastComparisonDate })" alt="differenceHistoricalImage" />
+					<a href="@Url.Action("DifferenceImage", "ImageViewer", values)" target="_blank">
+						<img class="difference-image" src="@Url.Action("DifferenceImage", "ImageViewer", values)" alt="differenceHistoricalImage" />
 					</a>
 				}
+
 			</div>
 
 			<div class="controls">
-				@if (page.HumanComparisonRequired)
+				@if (comparison.HumanComparisonRequired)
 				{
-					@Html.ActionLink("Approve Difference", "Approve", "ImageDifferences", new { name = page.Name }, new { @class = "btn" })
+					@Html.ActionLink("Approve Difference", "Approve", "ImageDifferences", values, new { @class = "btn" })
 				}
 
-				<a class="btn align-center" href="@Url.Action("Index", "History", new { name = page.Name })">History</a>
+				<a class="btn align-center" href="@Url.Action("Index", "History", values)">History</a>
 
-				<a class="btn align-center" href="#@page.Name">Delete</a>
+				<a class="btn align-center" href="#@comparison.Name">Delete</a>
 			</div>
-			<div id="@page.Name" class="modalDialog">
+			<div id="@comparison.Name" class="modalDialog">
 				<div class="align-center text-align-center">
 					<a href="#closedModal" title="Close" class="close">X</a>
 
-					<h3>Delete @page.Name</h3>
+					<h3>Delete @comparison.Name</h3>
 					<p>Warning! Read this!</p>
 					<p>This will delete this page and the history for this page.</p>
-					@Html.ActionLink("#$@&! the police", "Delete", new { name = page.Name }, new { @class = "btn danger" })
+					@Html.ActionLink("#$@&! the police", "Delete", values, new { @class = "btn danger" })
 				</div>
 			</div>
 		</div>

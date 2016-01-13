@@ -8,6 +8,8 @@ namespace PDiffy.Data
 
 	public static class PDiffyFileProperties
 	{
+		public static string DateFormat { get { return "yyyyMMdd-HHmmss.ffff"; } }
+
 		///<remarks>
 		// An example of the filename, as of now without the quotes "div.utility-nav..orig.20151218-170255.6254.png"
 		///</remarks>
@@ -32,7 +34,7 @@ namespace PDiffy.Data
 			if (matches.Count == 0)
 				throw new ArgumentException("Could not parse the date part of the fileName", "fileName");
 
-			return DateTime.ParseExact(matches[0].ToString(), "yyyyMMdd-HHmmss.ffff", CultureInfo.InvariantCulture);
+			return DateTime.ParseExact(matches[0].ToString(), DateFormat, CultureInfo.InvariantCulture);
 		}
 	}
 }
