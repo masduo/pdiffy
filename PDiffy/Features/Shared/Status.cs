@@ -42,6 +42,8 @@ namespace PDiffy.Features.Shared
 	public class Body
 	{
 		public string name { get; set; }
+		public string page { get; set; }
+		public string site;
 		public byte[] content { get; set; }
 	}
 }

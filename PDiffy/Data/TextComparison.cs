@@ -12,6 +12,10 @@ namespace PDiffy.Data
 
 		[Key]
 		public string Name { get; set; }
+		[Key]
+		public string Page { get; set; }
+		[Key]
+		public string Site { get; set; } 
 
 		public bool ComparisonStillValid { get { return LastComparisonDate != null && LastComparisonDate > SystemTime.Now.AddHours(-72); } }
 		public DateTime? LastComparisonDate { get; set; }

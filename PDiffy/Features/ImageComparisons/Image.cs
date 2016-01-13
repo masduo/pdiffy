@@ -19,6 +19,8 @@ namespace PDiffy.Features.ImageComparisons
 			public Validator()
 			{
 				RuleFor(x => x.Name).NotEmpty();
+				RuleFor(x => x.Page).NotEmpty();
+				RuleFor(x => x.Site).NotEmpty();
 				RuleFor(x => x.Image).NotNull();
 			}
 		}
@@ -26,6 +28,8 @@ namespace PDiffy.Features.ImageComparisons
 		public class Command : IAsyncRequest
 		{
 			public string Name { get; set; }
+			public string Page { get; set; }
+			public string Site { get; set; }
 			public Bitmap Image { get; set; }
 		}
 
@@ -40,7 +44,7 @@ namespace PDiffy.Features.ImageComparisons
 
 			protected override async Task HandleCore(Command message)
 			{
-				var page = Data.Biggy.ImageComparisons.SingleOrDefault(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.SingleOrDefault(x => x.Name == message.Name && x.Page == message.Page && x.Site == message.Site);
 
 				if (page == null)
 				{
@@ -48,6 +52,9 @@ namespace PDiffy.Features.ImageComparisons
 						new Data.ImageComparison
 						{
 							Name = message.Name,
+							Page = message.Page,
+							Site = message.Site,
+
 							OriginalImagePath = _imageStore.Save(message.Image, message.Name, Environment.OriginalId)
 						});
 				}

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Web;
 using FluentValidation;
 using MediatR;
-using PDiffy.Features.Shared;
 using PDiffy.Features.Shared.Libraries;
 using Quarks;
 
@@ -16,6 +15,8 @@ namespace PDiffy.Features.TextComparisons
 			public Validator()
 			{
 				RuleFor(x => x.Name).NotEmpty();
+				RuleFor(x => x.Page).NotEmpty();
+				RuleFor(x => x.Site).NotEmpty();
 				RuleFor(x => x.Text).NotNull();
 			}
 		}
@@ -24,44 +25,49 @@ namespace PDiffy.Features.TextComparisons
 		{
 			public string Name { get; set; }
 			public string Text { get; set; }
+			public string Page { get; set; }
+			public string Site { get; set; }
 		}
 
 		public class CommandHandler : AsyncRequestHandler<Command>
 		{
 			protected override async Task HandleCore(Command message)
 			{
-				var textDiffPage = Data.Biggy.TextComparisons.SingleOrDefault(x => x.Name == message.Name);
+				var textComparison = Data.Biggy.TextComparisons.SingleOrDefault(x => x.Name == message.Name && x.Page == message.Page && x.Site == message.Site);
 
-				if (textDiffPage == null)
+				if (textComparison == null)
 				{
 					Data.Biggy.TextComparisons.Add(
 						new Data.TextComparison
 						{
 							Name = message.Name,
-							OriginalText = message.Text
+							Page = message.Page,
+							Site = message.Site,
+
+							OriginalText = message.Text,
 						});
 				}
-				else if (textDiffPage.HumanComparisonRequired == false)
+				else
 				{
-					textDiffPage.ComparisonText = message.Text;
+					textComparison.ComparisonText = message.Text;
 
-					await Task.Run(() =>
+					if (textComparison.HumanComparisonRequired == false)
 					{
-						//TODO: write a wrapper around the diff_match_patch, then inject wrapper here
-						var differences = new  diff_match_patch().diff_main(textDiffPage.OriginalText, textDiffPage.ComparisonText);
-
-						if (differences.Any(d => d.operation != Operation.Equal))
+						await Task.Run(() =>
 						{
-							textDiffPage.HumanComparisonRequired = true;
-							textDiffPage.DifferenceText = HttpUtility.HtmlEncode(new diff_match_patch().diff_prettyHtml(differences));
-						}
-						else
-							textDiffPage.ComparisonText = string.Empty;
+							var differences = new diff_match_patch().diff_main(textComparison.OriginalText, textComparison.ComparisonText);
 
-						textDiffPage.LastComparisonDate = SystemTime.Now;
-					});
+							if (differences.Any(d => d.operation != Operation.Equal))
+							{
+								textComparison.HumanComparisonRequired = true;
+								textComparison.DifferenceText = HttpUtility.HtmlEncode(new diff_match_patch().diff_prettyHtml(differences));
+							}
 
-					Data.Biggy.TextComparisons.Update(textDiffPage);
+							textComparison.LastComparisonDate = SystemTime.Now;
+						});
+
+						Data.Biggy.TextComparisons.Update(textComparison);
+					}
 				}
 			}
 		}

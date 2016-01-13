@@ -2,7 +2,6 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.Http.Results;
 using System.Web.Script.Serialization;
 using MediatR;
 using PDiffy.Features.Shared;
@@ -31,7 +30,14 @@ namespace PDiffy.Features.TextComparisons
 			if (string.IsNullOrEmpty(body.name))
 				return BadRequest();
 
-			await _mediator.SendAsync(new Text.Command { Name = body.name, Text = Encoding.Unicode.GetString(body.content) });
+			await _mediator.SendAsync(
+				new Text.Command
+				{
+					Name = body.name,
+					Page = body.page,
+					Site = body.site,
+					Text = Encoding.Unicode.GetString(body.content)
+				});
 
 			return Ok();
 		}

@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
-using PDiffy.Features.Shared;
 using PDiffy.Features.Shared.Libraries;
 using Quarks;
 
@@ -13,7 +12,11 @@ namespace PDiffy.Data
     public class ImageComparison
     {
         [Key]
-        public string Name { get; set; }
+		public string Name { get; set; }
+		[Key]
+		public string Page { get; set; }
+		[Key]
+		public string Site { get; set; }
 
         public bool ComparisonStillValid { get { return LastComparisonDate != null && LastComparisonDate > SystemTime.Now.AddHours(-72); } }
         public DateTime? LastComparisonDate { get; set; }
