@@ -4,15 +4,19 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json;
-using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
 using Quarks;
 
 namespace PDiffy.Data
 {
-    public class Page
+    public class ImageComparison
     {
         [Key]
-        public string Name { get; set; }
+		public string Name { get; set; }
+		[Key]
+		public string Page { get; set; }
+		[Key]
+		public string Site { get; set; }
 
         public bool ComparisonStillValid { get { return LastComparisonDate != null && LastComparisonDate > SystemTime.Now.AddHours(-72); } }
         public DateTime? LastComparisonDate { get; set; }
@@ -54,9 +58,10 @@ namespace PDiffy.Data
             get
             {
                 return string.IsNullOrWhiteSpace(DifferenceImagePath)
-                    ? new ImageDiffTool().CreateDifferenceImage(OriginalImage, ComparisonImage)
+                    ? new ImageDiffTool().CreateDifferenceImage(OriginalImage, ComparisonImage) //*
                     : new Bitmap(DifferenceImagePath);
             }
+            //* issue created on github to make the images same size before passing into create diff image
         }
 
         static Bitmap capture(string imageUrl)

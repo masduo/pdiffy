@@ -1,14 +1,16 @@
-﻿using System.Drawing;
+using System;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using PDiffy.Data.Stores;
 using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
 using Quarks;
 using Environment = PDiffy.Infrastructure.Environment;
 
-namespace PDiffy.Features.Page
+namespace PDiffy.Features.ImageComparisons
 {
 	public class Image
 	{
@@ -17,6 +19,8 @@ namespace PDiffy.Features.Page
 			public Validator()
 			{
 				RuleFor(x => x.Name).NotEmpty();
+				RuleFor(x => x.Page).NotEmpty();
+				RuleFor(x => x.Site).NotEmpty();
 				RuleFor(x => x.Image).NotNull();
 			}
 		}
@@ -24,6 +28,8 @@ namespace PDiffy.Features.Page
 		public class Command : IAsyncRequest
 		{
 			public string Name { get; set; }
+			public string Page { get; set; }
+			public string Site { get; set; }
 			public Bitmap Image { get; set; }
 		}
 
@@ -38,16 +44,31 @@ namespace PDiffy.Features.Page
 
 			protected override async Task HandleCore(Command message)
 			{
-				var page = Data.Biggy.PageList.SingleOrDefault(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.SingleOrDefault(x => x.Name == message.Name && x.Page == message.Page && x.Site == message.Site);
 
 				if (page == null)
-					Data.Biggy.PageList.Add(new Data.Page { Name = message.Name, OriginalImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.OriginalId) });
-				else if (!page.HumanComparisonRequired)
 				{
-					page.ComparisonImagePath = _imageStore.Save(message.Image, message.Name + "." + Environment.ComparisonId);
+					Data.Biggy.ImageComparisons.Add(
+						new Data.ImageComparison
+						{
+							Name = message.Name,
+							Page = message.Page,
+							Site = message.Site,
+
+							OriginalImagePath = _imageStore.Save(message.Image, message.Name, Environment.OriginalId)
+						});
+				}
+				else if (page.HumanComparisonRequired == false)
+				{
+					page.ComparisonImagePath = _imageStore.Save(message.Image, message.Name, Environment.ComparisonId);
 					await Task.Run(() =>
 					{
-						var equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						var equal = false;
+						try
+						{
+							equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						}
+						catch { /*assume inequality on comparison exceptions*/ }
 
 						if (!equal)
 							page.HumanComparisonRequired = true;
@@ -60,7 +81,7 @@ namespace PDiffy.Features.Page
 						page.LastComparisonDate = SystemTime.Now;
 					});
 
-					Data.Biggy.PageList.Update(page);
+					Data.Biggy.ImageComparisons.Update(page);
 				}
 			}
 		}

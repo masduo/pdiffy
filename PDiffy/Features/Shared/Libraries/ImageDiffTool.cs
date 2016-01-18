@@ -1,16 +1,18 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 
-namespace PDiffy.Features.Shared
+namespace PDiffy.Features.Shared.Libraries
 {
 	public class ImageDiffTool : IImageDiffTool
 	{
+		private readonly double _largeNumberOfPixels = 4 * Math.Pow(10, 6);
+
 		public unsafe bool Compare(Bitmap firstImage, Bitmap secondImage)
 		{
 			if (firstImage == null || secondImage == null) throw new NullReferenceException("one or more images may be null");
 			if (firstImage.Height != secondImage.Height || firstImage.Width != secondImage.Width) throw new FormatException("images are not the same size");
-			if (firstImage.Height > 2000 && firstImage.Width > 2000) throw new FormatException("one or more image might be too large");
+			if (firstImage.Height * firstImage.Width > _largeNumberOfPixels) throw new FormatException("one or more image might be too large");
 
 			bool equals = true;
 
@@ -46,7 +48,7 @@ namespace PDiffy.Features.Shared
 		{
 			if (firstImage == null || secondImage == null) throw new NullReferenceException("one or more images may be null");
 			if (firstImage.Height != secondImage.Height || firstImage.Width != secondImage.Width) throw new FormatException("images are not the same size");
-			if (firstImage.Height > 2000 && firstImage.Width > 2000) throw new FormatException("one or more image might be too large");
+			if (firstImage.Height * firstImage.Width > _largeNumberOfPixels) throw new FormatException("one or more image might be too large");
 
 			var matchColor = Color.Red;
 

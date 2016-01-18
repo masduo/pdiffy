@@ -23,12 +23,12 @@ using System.Web.Mvc.Ajax;
 using System.Web.Mvc.Html;
 using System.Web.Routing;
 using T4MVC;
-namespace PDiffy.Features.Differences
+namespace PDiffy.Features.TextDifferences
 {
-    public partial class DifferencesController
+    public partial class TextDifferencesController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        protected DifferencesController(Dummy d) { }
+        protected TextDifferencesController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected RedirectToRouteResult RedirectToAction(ActionResult result)
@@ -77,15 +77,22 @@ namespace PDiffy.Features.Differences
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> DeleteAll()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteAll);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public DifferencesController Actions { get { return MVC.Differences; } }
+        public TextDifferencesController Actions { get { return MVC.TextDifferences; } }
         [GeneratedCode("T4MVC", "2.0")]
         public readonly string Area = "";
         [GeneratedCode("T4MVC", "2.0")]
-        public readonly string Name = "Differences";
+        public readonly string Name = "TextDifferences";
         [GeneratedCode("T4MVC", "2.0")]
-        public const string NameConst = "Differences";
+        public const string NameConst = "TextDifferences";
 
         static readonly ActionNamesClass s_actions = new ActionNamesClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -96,6 +103,7 @@ namespace PDiffy.Features.Differences
             public readonly string Index = "Index";
             public readonly string Approve = "Approve";
             public readonly string Delete = "Delete";
+            public readonly string DeleteAll = "DeleteAll";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -104,6 +112,7 @@ namespace PDiffy.Features.Differences
             public const string Index = "Index";
             public const string Approve = "Approve";
             public const string Delete = "Delete";
+            public const string DeleteAll = "DeleteAll";
         }
 
 
@@ -131,6 +140,14 @@ namespace PDiffy.Features.Differences
         {
             public readonly string model = "model";
         }
+        static readonly ActionParamsClass_DeleteAll s_params_DeleteAll = new ActionParamsClass_DeleteAll();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_DeleteAll DeleteAllParams { get { return s_params_DeleteAll; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_DeleteAll
+        {
+            public readonly string message = "message";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -142,21 +159,23 @@ namespace PDiffy.Features.Differences
             public class _ViewNamesClass
             {
                 public readonly string Index = "Index";
+                public readonly string TextDifferences = "TextDifferences";
             }
-            public readonly string Index = "~/Features/Differences/Index.cshtml";
+            public readonly string Index = "~/Features/TextDifferences/Index.cshtml";
+            public readonly string TextDifferences = "~/Features/TextDifferences/TextDifferences.scss";
         }
     }
 
     [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-    public partial class T4MVC_DifferencesController : PDiffy.Features.Differences.DifferencesController
+    public partial class T4MVC_TextDifferencesController : PDiffy.Features.TextDifferences.TextDifferencesController
     {
-        public T4MVC_DifferencesController() : base(Dummy.Instance) { }
+        public T4MVC_TextDifferencesController() : base(Dummy.Instance) { }
 
         [NonAction]
-        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.Differences.Index.Query query);
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.TextDifferences.Index.Query query);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index(PDiffy.Features.Differences.Index.Query query)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Index(PDiffy.Features.TextDifferences.Index.Query query)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "query", query);
@@ -165,10 +184,10 @@ namespace PDiffy.Features.Differences
         }
 
         [NonAction]
-        partial void ApproveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.Differences.Approve.Command model);
+        partial void ApproveOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.TextDifferences.Approve.Command model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Approve(PDiffy.Features.Differences.Approve.Command model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Approve(PDiffy.Features.TextDifferences.Approve.Command model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Approve);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
@@ -177,14 +196,26 @@ namespace PDiffy.Features.Differences
         }
 
         [NonAction]
-        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.Differences.Delete.Command model);
+        partial void DeleteOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.TextDifferences.Delete.Command model);
 
         [NonAction]
-        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Delete(PDiffy.Features.Differences.Delete.Command model)
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> Delete(PDiffy.Features.TextDifferences.Delete.Command model)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Delete);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "model", model);
             DeleteOverride(callInfo, model);
+            return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
+        }
+
+        [NonAction]
+        partial void DeleteAllOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, PDiffy.Features.TextDifferences.DeleteAll.Command message);
+
+        [NonAction]
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> DeleteAll(PDiffy.Features.TextDifferences.DeleteAll.Command message)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.DeleteAll);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "message", message);
+            DeleteAllOverride(callInfo, message);
             return System.Threading.Tasks.Task.FromResult(callInfo as ActionResult);
         }
 

@@ -2,13 +2,13 @@
 using System.Web.Mvc;
 using MediatR;
 
-namespace PDiffy.Features.Differences
+namespace PDiffy.Features.TextDifferences
 {
-	public partial class DifferencesController : Controller
+	public partial class TextDifferencesController : Controller
     {
 	    readonly IMediator _mediator;
 
-	    public DifferencesController(IMediator mediator)
+		public TextDifferencesController(IMediator mediator)
 	    {
 		    _mediator = mediator;
 	    }
@@ -17,21 +17,29 @@ namespace PDiffy.Features.Differences
 	    {
 		    var model = await _mediator.SendAsync(query);
 
-            return View(MVC.Differences.Views.Index, model);
+            return View(MVC.TextDifferences.Views.Index, model);
         }
 
 		public virtual async Task<ActionResult> Approve(Approve.Command model)
 	    {
 		    await _mediator.SendAsync(model);
 
-		    return RedirectToAction(MVC.Differences.Index());
+		    return RedirectToAction(MVC.TextDifferences.Index());
 	    }
 
 		public virtual async Task<ActionResult> Delete(Delete.Command model)
 	    {
 		    await _mediator.SendAsync(model);
 
-			return RedirectToAction(MVC.Differences.Index());
+			return RedirectToAction(MVC.TextDifferences.Index());
 	    }
+
+		public virtual async Task<ActionResult> DeleteAll(DeleteAll.Command message)
+		{
+			if (message.DeleteAll)
+				await _mediator.SendAsync(message);
+
+			return RedirectToAction(MVC.TextDifferences.Index());
+		}
     }
 }

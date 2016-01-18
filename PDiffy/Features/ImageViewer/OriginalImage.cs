@@ -3,13 +3,15 @@ using System.Threading.Tasks;
 using MediatR;
 using Quarks.ImageExtensions;
 
-namespace PDiffy.Features.Image
+namespace PDiffy.Features.ImageViewer
 {
-	public class ComparisonImage 
+	public class OriginalImage 
 	{
 		public class Query : IAsyncRequest<Result>
 		{
 			public string Name { get; set; }
+			public string Page { get; set; }
+			public string Site { get; set; }
 		}
 
 		public class Result
@@ -21,9 +23,9 @@ namespace PDiffy.Features.Image
 		{
 			public async Task<Result> Handle(Query message)
 			{
-				var page = Data.Biggy.PageList.Single(x => x.Name == message.Name);
+				var imageComparison = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name && x.Page == message.Page && x.Site == message.Site);
 
-				return new Result { ImageData = page.ComparisonImage.ToByteArray() };
+				return new Result { ImageData = imageComparison.OriginalImage.ToByteArray() };
 			}
 		}
 	}

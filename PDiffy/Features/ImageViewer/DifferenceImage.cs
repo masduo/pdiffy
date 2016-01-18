@@ -2,17 +2,18 @@
 using System.Threading.Tasks;
 using MediatR;
 using PDiffy.Data.Stores;
-using PDiffy.Features.Shared;
 using PDiffy.Infrastructure;
 using Quarks.ImageExtensions;
 
-namespace PDiffy.Features.Image
+namespace PDiffy.Features.ImageViewer
 {
 	public class DifferenceImage
 	{
 		public class Query : IAsyncRequest<Result>
 		{
 			public string Name { get; set; }
+			public string Page { get; set; }
+			public string Site { get; set; }
 		}
 
 		public class Result
@@ -31,15 +32,15 @@ namespace PDiffy.Features.Image
 
 			public async Task<Result> Handle(Query message)
 			{
-				var page = Data.Biggy.PageList.Single(x => x.Name == message.Name);
+				var imageComparison = Data.Biggy.ImageComparisons.Single(x => x.Name == message.Name && x.Page == message.Page && x.Site == message.Site);
 
-				if (string.IsNullOrWhiteSpace(page.DifferenceImagePath))
+				if (string.IsNullOrWhiteSpace(imageComparison.DifferenceImagePath))
 				{
-					page.DifferenceImagePath = _imageStore.Save(page.DifferenceImage, page.Name + "." + Environment.DifferenceId);
-					Data.Biggy.PageList.Update(page);
+					imageComparison.DifferenceImagePath = _imageStore.Save(imageComparison.DifferenceImage, imageComparison.Name, Environment.DifferenceId);
+					Data.Biggy.ImageComparisons.Update(imageComparison);
 				}
 
-				return new Result { ImageData = page.DifferenceImage.ToByteArray()};
+				return new Result { ImageData = imageComparison.DifferenceImage.ToByteArray()};
 			}
 		}
 	}

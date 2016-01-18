@@ -1,11 +1,13 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
 using PDiffy.Features.Shared;
+using PDiffy.Features.Shared.Libraries;
 using Quarks;
 
-namespace PDiffy.Features.Page
+namespace PDiffy.Features.ImageComparisons
 {
 	public class WebImage
 	{
@@ -28,16 +30,21 @@ namespace PDiffy.Features.Page
 		{
 			protected override async Task HandleCore(Command message)
 			{
-				var page = Data.Biggy.PageList.SingleOrDefault(x => x.Name == message.Name);
+				var page = Data.Biggy.ImageComparisons.SingleOrDefault(x => x.Name == message.Name);
 
 				if (page == null)
-					Data.Biggy.PageList.Add(new Data.Page { Name = message.Name, OriginalImageUrl = message.Url });
+					Data.Biggy.ImageComparisons.Add(new Data.ImageComparison { Name = message.Name, OriginalImageUrl = message.Url });
 				else if (!page.HumanComparisonRequired)
 				{
 					page.ComparisonImageUrl = message.Url;
 					await Task.Run(() =>
 					{
-						var equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						var equal = false;
+						try
+						{
+							equal = new ImageDiffTool().Compare(page.OriginalImage, page.ComparisonImage);
+						}
+						catch { /*assume inequality on comparison exceptions*/ }
 
 						if (!equal)
 							page.HumanComparisonRequired = true;
@@ -49,7 +56,7 @@ namespace PDiffy.Features.Page
 
 						page.LastComparisonDate = SystemTime.Now;
 					});
-					Data.Biggy.PageList.Update(page);
+					Data.Biggy.ImageComparisons.Update(page);
 				}
 			}
 		}
