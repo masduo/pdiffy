@@ -1,5 +1,4 @@
-﻿@using PDiffy.Features.TextComparisons
-@model IList<PDiffy.Features.TextDifferences.Index.Model>
+﻿@model IList<PDiffy.Features.TextDifferences.Index.Model>
 
 @{
 	Layout = "~/Features/Shared/_Layout.cshtml";
@@ -15,6 +14,7 @@
 			@{ var values = new { name = textComparison.Name, page = textComparison.Page, site = textComparison.Site }; }
 
 			<h3>@textComparison.Name</h3>
+			<span>@textComparison.Site</span> | <span>@textComparison.Page</span>
 
 			@if (textComparison.HumanComparisonRequired)
 			{ <p class="comparison">@textComparison.LastComparisonDate</p> }
