@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -38,7 +40,7 @@ namespace PDiffy.Data.Stores
 			Directory.Delete(Environment.ImageStorePath, true);
 		}
 
-		public string[] Get(string name, string imageType)
+		public IEnumerable<string> Get(string name, string imageType)
 		{
 			//Note: Example filename w\ quotes: "2e70726f6d6f2e6d61747269782e74776f6c696e65733e68322e64696666.20160107-145147.4123.png"
 			var matchFunction = new Func<string, bool>(i => Regex.IsMatch(i, @"\\[a-zA-Z0-9]*.\d{8}-\d{6}.\d{4}.png", RegexOptions.Compiled | RegexOptions.IgnoreCase));
@@ -48,7 +50,7 @@ namespace PDiffy.Data.Stores
 				.Where(matchFunction)
 				.Where(path =>
 					ConvertHexToString(Path.GetFileName(path)).Name() == name &&
-					ConvertHexToString(Path.GetFileName(path)).Type() == imageType).ToArray();
+					ConvertHexToString(Path.GetFileName(path)).Type() == imageType).ToList();
 		}
 
 		public static string ConvertStringToHex(string asciiString)
