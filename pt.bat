@@ -10,7 +10,7 @@ if (Test-Path '.\.nuget\NuGet.exe') { ^
 } ^
 Write-Host 'Restoring NuGet packages'; ^
 NuGet restore; ^
-. '.\packages\PowerTasks.1.1.0\Functions.ps1'; ^
+. '.\packages\PowerTasks.2.0.0\Functions.ps1'; ^
 $basePath = Resolve-Path .; ^
 Set-Location '.\PDiffy'; ^
 $basePath = Split-Path (Split-Path (Resolve-Path $basePath -Relative)); ^

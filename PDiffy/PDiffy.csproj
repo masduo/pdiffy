@@ -132,6 +132,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\packages\PowerTasks.Plugins.OctoCreateRelease.1.0.1\scripts\OctoCreateRelease.ps1">
+      <Link>.Tasks\OctoCreateRelease.ps1</Link>
+    </None>
     <None Include="..\packages\PowerTasks.Plugins.OctoPack.1.0.0\scripts\OctoPack.ps1">
       <Link>.Tasks\OctoPack.ps1</Link>
     </None>
@@ -147,6 +150,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Features\History\History.scss" />
+    <None Include=".Tasks.ps1" />
     <None Include="Features\Shared\Buttons.scss" />
     <None Include="Features\Shared\Modals.scss" />
     <None Include="Features\Shared\Shared.scss" />
@@ -281,7 +285,6 @@
     <None Include="..\packages\PowerTasks.Plugins.Version.1.0.0\scripts\Version.ps1">
       <Link>.Tasks\Version.ps1</Link>
     </None>
-    <None Include=".Tasks.ps1" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
