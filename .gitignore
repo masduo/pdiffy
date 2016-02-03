@@ -193,3 +193,4 @@ ModelManifest.xml
 ImageDiff.Web/Images/
 PDiffy.Web/Images/
 builds/
+artifacts/*

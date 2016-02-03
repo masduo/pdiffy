@@ -141,6 +141,13 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Features\History\History.scss" />
+    <None Include="..\packages\PowerTasks.Plugins.Clean.2.0.0\scripts\Clean.ps1">
+      <Link>.Tasks\Clean.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.Compile.2.0.1\scripts\Compile.ps1">
+      <Link>.Tasks\Compile.ps1</Link>
+    </None>
+    <None Include=".Tasks.ps1" />
     <None Include="Features\Shared\Buttons.scss" />
     <None Include="Features\Shared\Modals.scss" />
     <None Include="Features\Shared\Shared.scss" />
