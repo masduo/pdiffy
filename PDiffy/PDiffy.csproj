@@ -147,6 +147,12 @@
     <None Include="..\packages\PowerTasks.Plugins.Compile.2.0.1\scripts\Compile.ps1">
       <Link>.Tasks\Compile.ps1</Link>
     </None>
+    <None Include="..\packages\PowerTasks.Plugins.MSpec.1.0.0\scripts\MSpec.ps1">
+      <Link>.Tasks\MSpec.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.NUnit.1.0.0\scripts\NUnit.ps1">
+      <Link>.Tasks\NUnit.ps1</Link>
+    </None>
     <None Include=".Tasks.ps1" />
     <None Include="Features\Shared\Buttons.scss" />
     <None Include="Features\Shared\Modals.scss" />

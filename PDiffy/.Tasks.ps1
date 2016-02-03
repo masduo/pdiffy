@@ -1,3 +1,5 @@
 Include-PluginScripts
 
-task dev Clean, Compile
+task Test NUnit, MSpec #, etc. >> enables composition of running all tests of different types under one task
+
+task dev Clean, Compile, Test
