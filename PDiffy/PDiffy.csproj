@@ -153,6 +153,9 @@
     <None Include="..\packages\PowerTasks.Plugins.NUnit.1.0.0\scripts\NUnit.ps1">
       <Link>.Tasks\NUnit.ps1</Link>
     </None>
+    <None Include="..\packages\PowerTasks.Plugins.OctoPack.4.0.1\scripts\OctoPack.ps1">
+      <Link>.Tasks\OctoPack.ps1</Link>
+    </None>
     <None Include=".Tasks.ps1" />
     <None Include="Features\Shared\Buttons.scss" />
     <None Include="Features\Shared\Modals.scss" />
