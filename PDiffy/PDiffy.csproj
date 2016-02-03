@@ -132,15 +132,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\PowerTasks.Plugins.OctoCreateRelease.1.0.1\scripts\OctoCreateRelease.ps1">
-      <Link>.Tasks\OctoCreateRelease.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.OctoPack.1.0.0\scripts\OctoPack.ps1">
-      <Link>.Tasks\OctoPack.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Test.1.0.0\scripts\specflow_report_template.html">
-      <Link>.Tasks\specflow_report_template.html</Link>
-    </None>
     <Content Include="Content\logo.png" />
     <Content Include="Features\Error\Error.scss" />
     <Content Include="Features\ImageDifferences\ImageDifferences.js" />
@@ -150,7 +141,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Features\History\History.scss" />
-    <None Include=".Tasks.ps1" />
     <None Include="Features\Shared\Buttons.scss" />
     <None Include="Features\Shared\Modals.scss" />
     <None Include="Features\Shared\Shared.scss" />
@@ -273,18 +263,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\web.config" />
-    <None Include="..\packages\PowerTasks.Plugins.Clean.1.0.0\scripts\Clean.ps1">
-      <Link>.Tasks\Clean.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Compile.1.0.0\scripts\Compile.ps1">
-      <Link>.Tasks\Compile.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Test.1.0.0\scripts\Test.ps1">
-      <Link>.Tasks\Test.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Version.1.0.0\scripts\Version.ps1">
-      <Link>.Tasks\Version.ps1</Link>
-    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
