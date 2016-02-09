@@ -172,3 +172,24 @@ button {
 
 .comparison.invalid {
   background-color: #A0A0A0; }
+
+div.original-text {
+  display: inline-block;
+  position: relative;
+  left: 0;
+  width: 49%;
+  background-color: #f0f0f0; }
+
+div.comparison-text {
+  display: inline-block;
+  position: relative;
+  left: 0;
+  width: 49%;
+  background-color: #f0f0f0; }
+
+div.differences-text {
+  display: block;
+  background-color: #f0f8f0; }
+
+.pre-wrap-white-space {
+  white-space: pre-wrap; }

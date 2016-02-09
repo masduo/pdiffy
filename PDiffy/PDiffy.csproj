@@ -183,12 +183,16 @@
     <Content Include="Infrastructure\FrontEndConfiguration\webpack.dev.js" />
     <Content Include="Infrastructure\FrontEndConfiguration\scripts.entries.js" />
     <Content Include="Infrastructure\FrontEndConfiguration\webpack.js" />
-    <Content Include="Scripts\Differences.generated.js" />
     <Content Include="Scripts\History.generated.js" />
+    <Content Include="Scripts\ImageDifferences.generated.js" />
     <Content Include="Scripts\Shared.generated.js" />
-    <Content Include="Styles\Differences.css" />
+    <Content Include="Scripts\TextDifferences.generated.js" />
+    <Content Include="Scripts\_readme.txt" />
     <Content Include="Styles\Error.css" />
     <Content Include="Styles\History.css" />
+    <Content Include="Styles\ImageDifferences.css" />
+    <Content Include="Styles\TextDifferences.css" />
+    <Content Include="Styles\_readme.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

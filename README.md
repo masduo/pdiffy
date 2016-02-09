@@ -10,7 +10,20 @@
 1. Clone this repo
 2. Restore Nuget Packages
 3. Run this using Visual Studio (2013 or later) or host it somewhere **(run it as an admin)**
-4. **(This step is required if you don't give P Diffy all the required permissions)** Add the environment variables *pdiffyImageStorePath* and *pdiffyDataStorePath* and set the values to wherever you want to store the images and data P Diffy requires
+4. Add the environment variables *pdiffyImageStorePath* and *pdiffyDataStorePath* and set the values to wherever you want to store the images and data P Diffy requires
+
+## Node & Gulp considerations
+P Diffy uses node and gulp in order to compile stylesheets and generate javascripts for each feature. The generated files are already source controlled under root /Styles and /Scripts folders and ready to use. But in case any of the Feature/x/ css or js files are editted running gulp will regenrate them. Steps to follow:
+
+1. Install <a href="http://nodejs.org/" target="_blank">Node.js</a>
+2. Open command prompt and navigate to /Infrastructure/FrontEndConfiguration
+3. To get all packages required in packages.json run "npm install"
+4. To get gulp going based on instructions on gulfile.js run "gulp dev"
+
+This should (as instructed in gulpfile.js)
+
+- Generate compiled css files  into /Styles/ folder
+- Generate javascript files into /Scripts/
 
 ## Using P Diffy
 
