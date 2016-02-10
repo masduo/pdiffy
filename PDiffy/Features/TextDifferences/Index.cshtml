@@ -10,12 +10,20 @@
 	<script src="~/Scripts/TextDifferences.generated.js" type="text/javascript"></script>
 }
 
+
+<aside class="toggles">
+	<span>@Model.Count items compared.</span>
+</aside>
+<br />
+<br />
+
 <aside class="toggles">
 	@foreach (var site in Model.GroupBy(_ => _.Site))
-	{ <div>
-		<input id="cmn-toggle-@site.Key" name="toggleButton" toggles="site" type="checkbox" />
-		<label for="cmn-toggle-@site.Key" data-on="@site.Key" data-off="@site.Key">@site.Key</label>
-	</div>
+	{
+		<div>
+			<input id="cmn-toggle-@site.Key.Replace(" ","__")" name="siteToggle" toggles="site" type="checkbox" class="input-toggle" />
+			<label for="cmn-toggle-@site.Key.Replace(" ", "__")">@string.Format("{0} ({1})", site.Key, @Model.Where(_ => _.Site == site.Key).Count())</label>
+		</div>
 	}
 </aside>
 <aside class="toggles">
@@ -23,8 +31,8 @@
 	@foreach (var page in Model.GroupBy(_ => _.Page))
 	{
 		<div>
-			<input id="cmn-toggle-@page.Key" name="toggleButton" toggles="page" type="checkbox" />
-			<label for="cmn-toggle-@page.Key" data-on="@page.Key" data-off="@page.Key">@page.Key</label>
+			<input id="cmn-toggle-@page.Key.Replace(" ", "__")" name="pageToggle" toggles="page" type="checkbox" class="input-toggle" />
+			<label for="cmn-toggle-@page.Key.Replace(" ", "__")">@string.Format("{0} ({1})", page.Key, @Model.Where(_ => _.Page == page.Key).Count())</label>
 		</div>
 	}
 </aside>
@@ -32,7 +40,7 @@
 <div class="page-container align-center text-align-center">
 	@foreach (var textComparison in Model.Reverse())
 	{
-		<div class="page-object align-center text-align-center">
+		<div class="page-object align-center text-align-center" style="display:none;">
 			@{ var values = new { name = textComparison.Name, page = textComparison.Page, site = textComparison.Site }; }
 
 			<h3>@textComparison.Name</h3>

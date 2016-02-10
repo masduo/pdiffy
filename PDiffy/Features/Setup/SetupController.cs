@@ -8,7 +8,7 @@ namespace PDiffy.Features.Setup
 		public virtual ActionResult Index()
 		{
 			if (!string.IsNullOrWhiteSpace(Environment.ImageStorePath) && !string.IsNullOrWhiteSpace(Environment.DataStorePath))
-				return RedirectToAction(MVC.ImageDifferences.Index());
+				return RedirectToAction(MVC.TextDifferences.Index());
 			return View(MVC.Setup.Views.Index);
 		}
 
@@ -17,7 +17,7 @@ namespace PDiffy.Features.Setup
 			Environment.ImageStorePath = imageStorePath;
 			Environment.DataStorePath = dataStorePath;
 
-			return RedirectToAction(MVC.ImageDifferences.Index());
+			return RedirectToAction(MVC.TextDifferences.Index());
 		}
 	}
 }

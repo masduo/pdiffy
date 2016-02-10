@@ -22,7 +22,7 @@ P Diffy uses node and gulp in order to compile stylesheets and generate javascri
 
 This should (as instructed in gulpfile.js)
 
-- Generate compiled css files  into /Styles/ folder
+- Generate compiled css files into /Styles/ folder
 - Generate javascript files into /Scripts/
 
 ## Using P Diffy

@@ -1,71 +1,56 @@
-﻿console.log('hello from text differences.js ...');
+﻿function Catalyst() { this.init(); }
 
-var filteredSites = '';
-var filteredPages = '';
-
-init();
-
-function init() {
-	bindToggleButtons();
+Catalyst.prototype.init = function () {
+	this.bindToggleButtons();
 }
 
-function bindToggleButtons() {
-	var toggles = document.getElementsByName('toggleButton');
-	console.log('elements count: ' + toggles.length);
+Catalyst.prototype.bindToggleButtons = function () {
+	var that = this;
+	var toggles = document.getElementsByClassName('input-toggle');
 
-	for (var i = 0; i < toggles.length; i++) {
-		var toggle = toggles[i];
-		console.log(toggle.id.replace('cmn-toggle-', ''));
-		toggle.onclick = function() { filter(this.getAttribute('toggles'), this.id.replace('cmn-toggle-', '')); };
-	}
+	for (var i = 0; i < toggles.length; i++)
+		toggles[i].onclick = function () { that.filter(); };
 }
 
-function filter(filterClass, siteOrPage) {
-	//window.history.pushState({ site: site }, "changed", "/#www");
-	console.log(filterClass, siteOrPage);
-
-	if (filterClass == 'site') {
-		if (filteredSites.indexOf(siteOrPage) < 0)
-			filteredSites += " " + siteOrPage;
-		else
-			filteredSites = filteredSites.replace(siteOrPage, '');
-	}
-
-	if (filterClass == 'page') {
-		if (filteredPages.indexOf(siteOrPage) < 0)
-			filteredPages += " " + siteOrPage;
-		else
-			filteredPages = filteredPages.replace(siteOrPage, '');
-	}
-	filteredSites = filteredSites.trim();
-	filteredPages = filteredPages.trim();
+/// none selected: show none 
+/// site only: show all pages of each selected site
+/// page only: show selected pages of all sites
+/// site and page: show selected pages of selected sites
+Catalyst.prototype.filter = function () {
+	var checkedSites = this.getInputTexts('site');
+	var checkedPages = this.getInputTexts('page');
 
 	var siteSpans = document.getElementsByClassName('site');
-	var pageSpans = document.getElementsByClassName('page');
 
 	for (var i = 0; i < siteSpans.length; i++) {
-		if (filteredSites == '' && filteredPages == '') {
-			//show all
-			siteSpans[i].parentElement.style.display = 'block';
-			pageSpans[i].parentElement.style.display = 'block';
-			continue;
-		}
+		var siteSpan = siteSpans[i];
+		var pageSpan = siteSpan.nextElementSibling;
+		var parentElement = siteSpan.parentElement;
+		parentElement.style.display = 'none';
 
-		var inSites = filteredSites.indexOf(siteSpans[i].innerText) >= 0;
-		var inPages = filteredPages.indexOf(pageSpans[i].innerText) >= 0;
+		if (checkedSites.length == 0 && checkedPages.length == 0) {
+			parentElement.style.display = 'none';
+		} else {
+			var inSites = checkedSites.indexOf(siteSpan.innerText) >= 0;
+			var inPages = checkedPages.indexOf(pageSpan.innerText) >= 0;
 
-		if (inSites && (filteredPages == '' || inPages)) {
-			siteSpans[i].parentElement.style.display = 'block';
-		}
-		else {
-			siteSpans[i].parentElement.style.display = 'none';
-
-			if (inPages && (filteredSites == '' || inSites)) {
-				siteSpans[i].parentElement.style.display = 'block';
-			} else {
-				siteSpans[i].parentElement.style.display = 'none';
+			if (inSites && inPages ||
+				checkedSites.length == 0 && inPages ||
+				checkedPages.length == 0 && inSites) {
+				parentElement.style.display = 'block';
 			}
 		}
 	}
-	return false;
 }
+
+Catalyst.prototype.getInputTexts = function (toggle) {
+	var checkedInputs = document.querySelectorAll('input.input-toggle[toggles=' + toggle + ']:checked');
+	var filters = '';
+	for (var i = 0; i < checkedInputs.length; i++)
+		filters += ' ' + checkedInputs[i].nextElementSibling.innerText;
+
+	console.log(toggle + " filters: " + filters);
+	return filters;
+}
+
+var theCatalyst = new Catalyst();
