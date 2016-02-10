@@ -1,6 +1,7 @@
 ﻿@import "../Shared/Buttons.scss";
 @import "../Shared/Shared.scss";
 @import "../Shared/Modals.scss";
+/*@import "../Shared/InputToggles.scss";*/
 
 .difference-image {
     height: 10%;
@@ -82,4 +83,12 @@ div.differences-text {
 
 .pre-wrap-white-space {
     white-space: pre-wrap;
+}
+
+aside.toggles
+{
+	float:left;
+	top:100px;
+	/*left:50px;*/
+	position:relative;
 }

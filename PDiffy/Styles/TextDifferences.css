@@ -138,6 +138,7 @@ button {
 .close:hover {
   background: #FF4646; }
 
+/*@import "../Shared/InputToggles.scss";*/
 .difference-image {
   height: 10%;
   width: 32.5%;
@@ -193,3 +194,9 @@ div.differences-text {
 
 .pre-wrap-white-space {
   white-space: pre-wrap; }
+
+aside.toggles {
+  float: left;
+  top: 100px;
+  /*left:50px;*/
+  position: relative; }

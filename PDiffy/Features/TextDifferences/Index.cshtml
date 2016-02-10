@@ -3,9 +3,31 @@
 @{
 	Layout = "~/Features/Shared/_Layout.cshtml";
 }
-@section Styles {<link href="~/Styles/Differences.css" rel="stylesheet" />}
+@section Styles {
+	<link href="~/Styles/TextDifferences.css" rel="stylesheet" />
+}
 @section Scripts {
-	<script src="~/Scripts/Differences.generated.js" type="text/javascript"></script> }
+	<script src="~/Scripts/TextDifferences.generated.js" type="text/javascript"></script>
+}
+
+<aside class="toggles">
+	@foreach (var site in Model.GroupBy(_ => _.Site))
+	{ <div>
+		<input id="cmn-toggle-@site.Key" name="toggleButton" toggles="site" type="checkbox" />
+		<label for="cmn-toggle-@site.Key" data-on="@site.Key" data-off="@site.Key">@site.Key</label>
+	</div>
+	}
+</aside>
+<aside class="toggles">
+
+	@foreach (var page in Model.GroupBy(_ => _.Page))
+	{
+		<div>
+			<input id="cmn-toggle-@page.Key" name="toggleButton" toggles="page" type="checkbox" />
+			<label for="cmn-toggle-@page.Key" data-on="@page.Key" data-off="@page.Key">@page.Key</label>
+		</div>
+	}
+</aside>
 
 <div class="page-container align-center text-align-center">
 	@foreach (var textComparison in Model.Reverse())
@@ -14,7 +36,7 @@
 			@{ var values = new { name = textComparison.Name, page = textComparison.Page, site = textComparison.Site }; }
 
 			<h3>@textComparison.Name</h3>
-			<span>@textComparison.Site</span> | <span>@textComparison.Page</span>
+			<span class="site">@textComparison.Site</span> | <span class="page">@textComparison.Page</span>
 
 			@if (textComparison.HumanComparisonRequired)
 			{ <p class="comparison">@textComparison.LastComparisonDate</p> }
@@ -63,7 +85,8 @@
 	}
 	<br />
 	<br />
-	@if (Model.Any()) {
+	@if (Model.Any())
+	{
 		<a class="btn danger align-center" href="#deleteAll">Delete All</a>
 		<div id="deleteAll" class="modalDialog">
 			<div class="align-center text-align-center">
