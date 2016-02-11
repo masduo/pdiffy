@@ -1,10 +1,10 @@
-﻿function Catalyst() { this.init(); }
+﻿function Filter() { this.init(); }
 
-Catalyst.prototype.init = function () {
+Filter.prototype.init = function () {
 	this.bindToggleButtons();
 }
 
-Catalyst.prototype.bindToggleButtons = function () {
+Filter.prototype.bindToggleButtons = function () {
 	var that = this;
 	var toggles = document.getElementsByClassName('input-toggle');
 
@@ -16,7 +16,7 @@ Catalyst.prototype.bindToggleButtons = function () {
 /// site only: show all pages of each selected site
 /// page only: show selected pages of all sites
 /// site and page: show selected pages of selected sites
-Catalyst.prototype.filter = function () {
+Filter.prototype.filter = function () {
 	var checkedSites = this.getInputTexts('site');
 	var checkedPages = this.getInputTexts('page');
 
@@ -35,22 +35,22 @@ Catalyst.prototype.filter = function () {
 			var inPages = checkedPages.indexOf(pageSpan.innerText) >= 0;
 
 			if (inSites && inPages ||
-				checkedSites.length == 0 && inPages ||
-				checkedPages.length == 0 && inSites) {
+				inSites && checkedPages.length == 0 ||
+				inPages && checkedSites.length == 0) {
 				parentElement.style.display = 'block';
 			}
 		}
 	}
 }
 
-Catalyst.prototype.getInputTexts = function (toggle) {
+Filter.prototype.getInputTexts = function (toggle) {
 	var checkedInputs = document.querySelectorAll('input.input-toggle[toggles=' + toggle + ']:checked');
 	var filters = '';
 	for (var i = 0; i < checkedInputs.length; i++)
 		filters += ' ' + checkedInputs[i].nextElementSibling.innerText;
 
-	console.log(toggle + " filters: " + filters);
+	//console.log(toggle + " filters: " + filters);
 	return filters;
 }
 
-var theCatalyst = new Catalyst();
+var theFilter = new Filter();

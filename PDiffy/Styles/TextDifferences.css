@@ -195,8 +195,11 @@ div.differences-text {
 .pre-wrap-white-space {
   white-space: pre-wrap; }
 
+div.fixed-toggles {
+  position: fixed; }
+
 aside.toggles {
   float: left;
-  top: 100px;
-  /*left:50px;*/
-  position: relative; }
+  padding-left: 15px;
+  padding-bottom: 15px;
+  clear: both; }

@@ -176,6 +176,8 @@
     <Content Include="Infrastructure\FrontEndConfiguration\excluded.features.js" />
     <Content Include="Features\TextDifferences\TextDifferences.scss" />
     <Content Include="Features\TextDifferences\Index.cshtml" />
+    <Content Include="Features\TextDifferences\Partials\_FilterToggles.cshtml" />
+    <Content Include="Features\TextDifferences\Partials\_Comparison.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Infrastructure\FrontEndConfiguration\gulpfile.js" />
     <Content Include="Infrastructure\FrontEndConfiguration\paths.js" />
