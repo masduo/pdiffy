@@ -138,7 +138,6 @@ button {
 .close:hover {
   background: #FF4646; }
 
-/*@import "../Shared/InputToggles.scss";*/
 .difference-image {
   height: 10%;
   width: 32.5%;

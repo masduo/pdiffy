@@ -8,13 +8,16 @@
 	<h3>@textComparison.Name</h3>
 	<span class="site">@textComparison.Site</span> | <span class="page">@textComparison.Page</span>
 
-	@if (textComparison.HumanComparisonRequired) {
-		<p class="comparison">@textComparison.LastComparisonDate</p>
+	@if (textComparison.HumanComparisonRequired)
+	{
+		<p class="comparison human-comparison-required">@textComparison.LastComparisonDate</p>
 	}
-	else if (textComparison.ComparisonStillValid) {
+	else if (textComparison.ComparisonStillValid)
+	{
 		<p class="comparison valid">@textComparison.LastComparisonDate</p>
 	}
-	else {
+	else
+	{
 		<p class="comparison invalid">@textComparison.LastComparisonDate</p>
 	}
 

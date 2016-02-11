@@ -6,10 +6,14 @@ Filter.prototype.init = function () {
 
 Filter.prototype.bindToggleButtons = function () {
 	var that = this;
-	var toggles = document.getElementsByClassName('input-toggle');
 
+	var toggles = document.getElementsByClassName('input-toggle');
 	for (var i = 0; i < toggles.length; i++)
 		toggles[i].onclick = function () { that.filter(); };
+
+	var additionalToggles = document.getElementsByName("highLevelFilter");
+	for (i = 0; i < additionalToggles.length; i++)
+		additionalToggles[i].onclick = function () { that.filter(); };
 }
 
 /// none selected: show none 
@@ -17,8 +21,9 @@ Filter.prototype.bindToggleButtons = function () {
 /// page only: show selected pages of all sites
 /// site and page: show selected pages of selected sites
 Filter.prototype.filter = function () {
-	var checkedSites = this.getInputTexts('site');
-	var checkedPages = this.getInputTexts('page');
+	var that = this;
+	var checkedSites = that.getInputTexts('site');
+	var checkedPages = that.getInputTexts('page');
 
 	var siteSpans = document.getElementsByClassName('site');
 
@@ -40,6 +45,27 @@ Filter.prototype.filter = function () {
 				parentElement.style.display = 'block';
 			}
 		}
+	}
+
+	that.applyAdditionalFilters();
+}
+
+Filter.prototype.applyAdditionalFilters = function () {
+	var selectedRadio = document.querySelectorAll('input[name=highLevelFilter]:checked')[0].id;
+	if (selectedRadio == "OnlyDifferences") {
+		//only differences
+		var shownComparisons = document.querySelectorAll('div.page-object[style="display: block;"]>p.comparison.invalid');
+		for (var j = 0; j < shownComparisons.length; j++)
+			shownComparisons[j].parentElement.style.display = 'none';
+
+	} else if (selectedRadio == "OnlySimilarities") {
+		//only similarities
+		shownComparisons = document.querySelectorAll('div.page-object[style="display: block;"]>p.comparison.valid, div.page-object[style="display: block;"]>p.comparison.human-comparison-required');
+		for (var j = 0; j < shownComparisons.length; j++)
+			shownComparisons[j].parentElement.style.display = 'none';
+	}
+	else if (selectedRadio == "ShowEverything") {
+		//show everything
 	}
 }
 
