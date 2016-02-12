@@ -1,0 +1,60 @@
+﻿@model PDiffy.Features.TextDifferences.Index.Model
+
+@{ var textComparison = Model; }
+
+<div class="page-object align-center text-align-center" style="display:none;">
+	@{ var values = new { name = textComparison.Name, page = textComparison.Page, site = textComparison.Site }; }
+
+	<h3>@textComparison.Name</h3>
+	<span class="site">@textComparison.Site</span> | <span class="page">@textComparison.Page</span>
+
+	@if (textComparison.HumanComparisonRequired)
+	{
+		<p class="comparison human-comparison-required">@textComparison.LastComparisonDate</p>
+	}
+	else if (textComparison.ComparisonStillValid)
+	{
+		<p class="comparison valid">@textComparison.LastComparisonDate</p>
+	}
+	else
+	{
+		<p class="comparison invalid">@textComparison.LastComparisonDate</p>
+	}
+
+	<div class="texts">
+		<div class="original-text">
+			<p class="pre-wrap-white-space">@textComparison.OriginalText</p>
+
+		</div>
+		@if (textComparison.ComparisonExists)
+		{
+			<div class="comparison-text">
+				<p class="pre-wrap-white-space">@textComparison.ComparisonText</p>
+			</div>
+		}
+		<div class="differences-text">
+			<p>@Html.Raw(Server.HtmlDecode(textComparison.DifferenceText.Replace("&amp;para;", string.Empty)))</p>
+		</div>
+	</div>
+
+	<div class="controls">
+		@if (textComparison.HumanComparisonRequired)
+		{
+			@Html.ActionLink("Approve Difference", "Approve", "TextDifferences", values, new { @class = "btn" })
+		}
+
+		<a class="btn align-center" href="@Url.Action("Index", "History", values)">History</a>
+
+		<a class="btn align-center" href="#@textComparison.Name">Delete</a>
+	</div>
+	<div id="@textComparison.Name" class="modalDialog">
+		<div class="align-center text-align-center">
+			<a href="#closedModal" title="Close" class="close">X</a>
+
+			<h3>Delete @textComparison.Name</h3>
+			<p>Warning! Read this!</p>
+			<p>This will delete this comparison and the history for it.</p>
+			@Html.ActionLink("#$@&! the police", "Delete", values, new { @class = "btn danger" })
+		</div>
+	</div>
+</div>

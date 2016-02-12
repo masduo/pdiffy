@@ -132,12 +132,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\PowerTasks.Plugins.OctoPack.1.0.0\scripts\OctoPack.ps1">
-      <Link>.Tasks\OctoPack.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Test.1.0.0\scripts\specflow_report_template.html">
-      <Link>.Tasks\specflow_report_template.html</Link>
-    </None>
     <Content Include="Content\logo.png" />
     <Content Include="Features\Error\Error.scss" />
     <Content Include="Features\ImageDifferences\ImageDifferences.js" />
@@ -147,6 +141,31 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Features\History\History.scss" />
+    <None Include="..\packages\PowerTasks.Plugins.Clean.2.0.0\scripts\Clean.ps1">
+      <Link>.Tasks\Clean.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.Compile.2.0.1\scripts\Compile.ps1">
+      <Link>.Tasks\Compile.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.MSpec.1.0.0\scripts\MSpec.ps1">
+      <Link>.Tasks\MSpec.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.NUnit.1.0.0\scripts\NUnit.ps1">
+      <Link>.Tasks\NUnit.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.OctoCreateRelease.1.0.1\scripts\OctoCreateRelease.ps1">
+      <Link>.Tasks\OctoCreateRelease.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.OctoPack.4.0.1\scripts\OctoPack.ps1">
+      <Link>.Tasks\OctoPack.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.Push.2.0.0\scripts\Push.ps1">
+      <Link>.Tasks\Push.ps1</Link>
+    </None>
+    <None Include="..\packages\PowerTasks.Plugins.Version.2.1.0\scripts\Version.ps1">
+      <Link>.Tasks\Version.ps1</Link>
+    </None>
+    <None Include=".Tasks.ps1" />
     <None Include="Features\Shared\Buttons.scss" />
     <None Include="Features\Shared\Modals.scss" />
     <None Include="Features\Shared\Shared.scss" />
@@ -157,6 +176,8 @@
     <Content Include="Infrastructure\FrontEndConfiguration\excluded.features.js" />
     <Content Include="Features\TextDifferences\TextDifferences.scss" />
     <Content Include="Features\TextDifferences\Index.cshtml" />
+    <Content Include="Features\TextDifferences\Partials\_FilterToggles.cshtml" />
+    <Content Include="Features\TextDifferences\Partials\_Comparison.cshtml" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Infrastructure\FrontEndConfiguration\gulpfile.js" />
     <Content Include="Infrastructure\FrontEndConfiguration\paths.js" />
@@ -164,12 +185,16 @@
     <Content Include="Infrastructure\FrontEndConfiguration\webpack.dev.js" />
     <Content Include="Infrastructure\FrontEndConfiguration\scripts.entries.js" />
     <Content Include="Infrastructure\FrontEndConfiguration\webpack.js" />
-    <Content Include="Scripts\Differences.generated.js" />
     <Content Include="Scripts\History.generated.js" />
+    <Content Include="Scripts\ImageDifferences.generated.js" />
     <Content Include="Scripts\Shared.generated.js" />
-    <Content Include="Styles\Differences.css" />
+    <Content Include="Scripts\TextDifferences.generated.js" />
+    <Content Include="Scripts\_readme.txt" />
     <Content Include="Styles\Error.css" />
     <Content Include="Styles\History.css" />
+    <Content Include="Styles\ImageDifferences.css" />
+    <Content Include="Styles\TextDifferences.css" />
+    <Content Include="Styles\_readme.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -269,19 +294,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\web.config" />
-    <None Include="..\packages\PowerTasks.Plugins.Clean.1.0.0\scripts\Clean.ps1">
-      <Link>.Tasks\Clean.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Compile.1.0.0\scripts\Compile.ps1">
-      <Link>.Tasks\Compile.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Test.1.0.0\scripts\Test.ps1">
-      <Link>.Tasks\Test.ps1</Link>
-    </None>
-    <None Include="..\packages\PowerTasks.Plugins.Version.1.0.0\scripts\Version.ps1">
-      <Link>.Tasks\Version.ps1</Link>
-    </None>
-    <None Include=".Tasks.ps1" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

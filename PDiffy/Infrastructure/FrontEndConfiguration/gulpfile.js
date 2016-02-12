@@ -1,13 +1,10 @@
 var path = require('path');
 var fs = require('fs');
-
 var gulp = require('gulp');
-
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
 var endOfLine = require('gulp-eol');
 var gulpwebpack = require('gulp-webpack');
-
 var paths = require('./paths');
 var webPackDev = require('./webpack.dev');
 var webPack = require('./webpack');
