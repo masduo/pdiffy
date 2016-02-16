@@ -199,7 +199,8 @@ aside.toggles {
   float: left;
   padding-left: 15px;
   padding-bottom: 15px;
-  clear: both; }
+  clear: both;
+  width: 90%; }
 
 .overflow-ellipses {
   vertical-align: bottom;

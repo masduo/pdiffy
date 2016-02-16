@@ -14,6 +14,27 @@ Filter.prototype.bindToggleButtons = function () {
 	var additionalToggles = document.getElementsByName('radioFilters');
 	for (i = 0; i < additionalToggles.length; i++)
 		additionalToggles[i].onclick = function () { that.filter(); };
+
+	var nodelist = document.querySelectorAll('#TouchAllSites, #TouchAllPages');
+	[].forEach.call(nodelist, function (element) {
+		element.onclick = function () {
+			that.touchAllSitesOrPages(element);
+			that.filter();
+		}
+	});
+}
+
+Filter.prototype.touchAllSitesOrPages = function (element) {
+	var selectAllText = "Select All";
+	var deselectAllText = "Deselect All";
+	var isSelectAll = element.getAttribute("value") == selectAllText;
+
+	element.setAttribute("value", isSelectAll ? deselectAllText : selectAllText);
+
+	var siteOrPage = (element.id == 'TouchAllSites') ? 'site' : 'page';
+	var toggles = document.querySelectorAll('.input-toggle[toggles=' + siteOrPage + ']');
+	for (var i = 0; i < toggles.length; i++)
+		toggles[i].checked = isSelectAll ? true : false;
 }
 
 /// none selected: show none 
@@ -22,6 +43,7 @@ Filter.prototype.bindToggleButtons = function () {
 /// site and page: show selected pages of selected sites
 Filter.prototype.filter = function () {
 	var that = this;
+
 	var checkedSites = that.getInputTexts('site');
 	var checkedPages = that.getInputTexts('page');
 

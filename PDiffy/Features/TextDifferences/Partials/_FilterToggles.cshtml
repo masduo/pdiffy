@@ -17,22 +17,32 @@
 		</div>
 	</aside>
 	<aside class="toggles">
-		@foreach (var site in sites)
-		{
-			<div>
-				<input id="@site.Key.Replace(" ","__")" toggles="site" type="checkbox" class="input-toggle" checked/>
-				<label for="@site.Key.Replace(" ", "__")">@string.Format("{0} ({1})", site.Key, @Model.Count(_ => _.Site == site.Key))</label>
-			</div>
-		}
+		<fieldset>
+			<legend>
+				<input type="button" id="TouchAllSites" value="Deselect All" />
+			</legend>
+			@foreach (var site in sites)
+			{
+				<div>
+					<input id="@site.Key.Replace(" ","__")" toggles="site" type="checkbox" class="input-toggle" checked />
+					<label for="@site.Key.Replace(" ", "__")">@string.Format("{0} ({1})", site.Key, @Model.Count(_ => _.Site == site.Key))</label>
+				</div>
+			}
+		</fieldset>
 	</aside>
 	<aside class="toggles">
-		@foreach (var page in pages)
-		{
-			<div>
-				<input id="cmn-toggle-@page.Key.Replace(" ", "__")" toggles="page" type="checkbox" class="input-toggle" />
-				<label for="cmn-toggle-@page.Key.Replace(" ", "__")">@page.Key</label>
-			</div>
-		}
+		<fieldset>
+			<legend>
+				<input type="button" id="TouchAllPages" value="Select All" />
+			</legend>
+			@foreach (var page in pages)
+			{
+				<div>
+					<input id="@page.Key.Replace(" ", "__")" toggles="page" type="checkbox" class="input-toggle" />
+					<label for="@page.Key.Replace(" ", "__")">@page.Key</label>
+				</div>
+			}
+		</fieldset>
 	</aside>
 	<aside class="toggles">
 		<span>@Model.Count elements compared.</span>
